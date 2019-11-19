@@ -29,11 +29,15 @@ module vertical_register(q, X, reset, clk);
 		end
 endmodule
 
-module update_register(register_value, x_value);
+module update_register(register_value, x_value, y_value);
+	input [7:0] x_value;
+	input [6:0] y_value;
+	input [27:0] register_value;
 	initial
 		begin
-			for (i = 0; i <= 11; i = i + 2)
+			for (i = 0; i <= 13; i = i + 2)
 				begin
+					if (register_value[i + 1: i] == 2'b00)
 				end
 		end 
 endmodule
@@ -76,7 +80,7 @@ module draw_datapath(outX, outY, outColour, X, Y, colour, control, go, resetn, c
 		begin
 			if (!resetn)
 				begin
-					outX <= 4'd0;
+					outX <= 8'd0;
 					outY <= 4'd0;
 					outColour <= 3'd0;
 				end
@@ -94,7 +98,7 @@ endmodule
 
 module draw
 	(
-		X, Y, colour, control, go, resetn, clk,
+		X, Y, in_colour, go, resetn, clk,
 		// The ports below are for the VGA output.  Do not change.
 		VGA_CLK,   						//	VGA Clock
 		VGA_HS,							//	VGA H_SYNC
@@ -108,8 +112,7 @@ module draw
 
 	input [7:0] X;
 	input [6:0] Y;
-	input [2:0] colour;
-	input [5:0] control;
+	input [2:0] in_colour;
 	input resetn, clk;
 
 	// Declare your inputs and outputs here
@@ -158,11 +161,9 @@ module draw
 			
 	// Put your code here. Your code should produce signals x,y,colour and writeEn/plot
 	// for the VGA controller, in addition to any other functionality your design may require.
-	wire mid_x;
 	wire [3:0] cont;
-	simple_register u0(mid_x, SW[6:0], KEY[3], KEY[0]);	
-    datapath d0(x, y, colour, X, SW[6:0], SW[9:7], cont, KEY[3], KEY[0], CLOCK_50);
-	control c0(cont, writeEn, KEY[1], KEY[0], CLOCK_50);
+    datapath d0(x, y, colour, X, Y, in_colour, cont, go, resetn, clk);
+	control c0(cont, writeEn, go, resetn, clk);
 	
     // Instansiate datapath
 	// datapath d0(...);
