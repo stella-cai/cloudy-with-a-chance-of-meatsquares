@@ -81,7 +81,7 @@ module draw_datapath(outX, outY, outColour, X, Y, colour, control, go, resetn, c
 			if (!resetn)
 				begin
 					outX <= 8'd0;
-					outY <= 4'd0;
+					outY <= 7'd0;
 					outColour <= 3'd0;
 				end
 			else
