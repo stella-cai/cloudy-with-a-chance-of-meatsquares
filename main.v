@@ -1,3 +1,6 @@
+`include "control.v"
+`include "delay_counter.v"
+
 module main
 	(
 		CLOCK_50,						//	On Board 50 MHz
@@ -28,14 +31,14 @@ module main
 	output	[9:0]	VGA_G;	 				//	VGA Green[9:0]
 	output	[9:0]	VGA_B;   				//	VGA Blue[9:0]
 	
-	wire resetn;
-	assign resetn = KEY[0];
+	wire reset;
+	assign reset = KEY[0];
 
 	wire start;
 	assign start = KEY[1];
 	
 	// Create the colour, x, y and writeEn wires that are inputs to the controller.
-	wire [2:0] colour;
+	wire [2:0] color;
 	wire [7:0] x;
 	wire [6:0] y;
 
@@ -45,9 +48,9 @@ module main
 	// Define the number of colours as well as the initial background
 	// image file (.MIF) for the controller.
 	// vga_adapter VGA(
-	// 		.resetn(resetn),
+	// 		.reset(reset),
 	// 		.clock(CLOCK_50),
-	// 		.colour(colour),
+	// 		.colour(color),
 	// 		.x(x),
 	// 		.y(y),
 	// 		.plot(plot),
@@ -65,7 +68,15 @@ module main
 	// 	defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
 	// 	defparam VGA.BACKGROUND_IMAGE = "black.mif";
     
-	wire draw, erase;
-    wire reset_count, enable;
+	wire draw; 
+    wire reset_count, delay_enable;
+	wire finish_game, finish_drawing;
     
+	delay_counter d(CLOCK_50, delay_enable, reset);
+	control c(.clock(CLOCK_50), .reset(reset), .start(start), .delay_enable(delay_enable), 
+	.finish_game(1'b0), .update(update), .plot(plot), .draw(draw), .reset_count(reset_count), .finish_drawing(finish_drawing)); 
+	sky s(CLOCK_50, reset, delay_enable, draw, x, y, color, finish_drawing);
+
+
 endmodule
+
