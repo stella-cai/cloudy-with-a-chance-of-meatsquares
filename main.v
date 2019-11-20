@@ -55,7 +55,7 @@ module main(SW, KEY, CLOCK_50,
 			end
 			
 		wire [3:0] register_num;
-		wire [1:0] bit_val;
+		wire [3:0] bit_val;
 		
 		always @(posedge appearing_rate)
 			begin
@@ -66,9 +66,10 @@ module main(SW, KEY, CLOCK_50,
 						end
 				else
 					begin
-						random ran(register_num, bit_val);
+						random ran(register_num, CLOCK_50, resetn);
+						random ran(bit_val, CLOCK_50, resetn);
 						ram32x28 ram4(register_num, CLOCK_50, 28'd0, 1'b0, q);
-						ram32x28 ram5(register_num, CLOCK_50, {q[27:2], bit_val}, 1'b1, q);
+						ram32x28 ram5(register_num, CLOCK_50, {q[27:2], bit_val[1:0]}, 1'b1, q);
 					end
 			end
 		
