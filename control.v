@@ -22,8 +22,8 @@ module control(clock, reset, start, delay_enable, finish_game,
             s_start: next_state = start ? s_start_wait : s_start;
             s_start_wait: next_state = start? s_start_wait : s_update;
             s_update : next_state = finish_game? s_end : s_draw;
-            // s_draw : next_state = finish_drawing? s_reset_count : s_draw;
-            s_draw : next_state = s_reset_count;
+            s_draw : next_state = finish_drawing? s_reset_count : s_draw;
+            // s_draw : next_state = s_reset_count;
             s_reset_count : next_state = s_count;
             s_count : next_state = delay_enable ? s_update : s_count;
             s_end : next_state = s_end;

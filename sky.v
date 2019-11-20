@@ -9,7 +9,6 @@ module sky(clock, reset, update, draw,
 
 	wire [27:0] col1, col2, col3, col4;
 	
-	$display("inside sky");
 	update_sky u(clock, update, reset, col1, col2, col3, col4);
 	draw_cols d(clock, reset, col1, col2, col3, col4, draw, x, y, color, finish_drawing);
 
@@ -72,7 +71,9 @@ module draw_cols(clock, reset, col1, col2, col3, col4, draw, x, y, color, finish
 	integer j = 0;
 	integer k = 0;
 
-	$display("inside draw");
+	initial
+		finish_drawing = 0;
+
 	always @(posedge clock) begin
 		$display("inside draw 2");
 
@@ -89,10 +90,10 @@ module draw_cols(clock, reset, col1, col2, col3, col4, draw, x, y, color, finish
 					color <= 3'b111;
 				end
 
-				x <= 0 + (k / 4);
-				y <= (i/2) * 4 + (k % 4);
+				x <= 0 + (k / 8);
+				y <= (i/2) * 8 + (k % 8);
 
-				if (k == 15) begin
+				if (k == 63) begin
 					i = i + 2;
 					k = 0;
 				end
@@ -101,8 +102,10 @@ module draw_cols(clock, reset, col1, col2, col3, col4, draw, x, y, color, finish
 				end
 			end
 
-			//drawing col 3
+			//drawing col2
 			else if (i < 56) begin
+
+				j = i - 28;
 				if (col2[j +: 2] == 0) begin
 					color <= 3'b000;
 				end
@@ -110,11 +113,10 @@ module draw_cols(clock, reset, col1, col2, col3, col4, draw, x, y, color, finish
 					color <= 3'b111;
 				end
 
-				j = i - 28;
-				x <= 4 + (k / 4);
-				y <= (j/2) * 4 + (k % 4);
+				x <= 8 + (k / 8);
+				y <= (j/2) * 8 + (k % 8);
 				
-				if (k == 15) begin
+				if (k == 63) begin
 					i = i + 2;
 					k = 0;
 				end
@@ -125,18 +127,18 @@ module draw_cols(clock, reset, col1, col2, col3, col4, draw, x, y, color, finish
 
 			//drawing col3
 			else if (i < 84) begin
+				j = i - 56;
 				if (col3[j +: 2] == 0) begin
 					color <= 3'b000;
-				end
+				end]
 				else begin
 					color <= 3'b111;
 				end
 
-				j = i - 56;
-				x <= 4 + (k / 4);
-				y <= (j/2) * 4 + (k % 4);
+				x <= 16 + (k / 8);
+				y <= (j/2) * 8 + (k % 8);
 				
-				if (k == 15) begin
+				if (k == 63) begin
 					i = i + 2;
 					k = 0;
 				end
