@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Stella/Documents/School/CSC258/Project/cloudy-with-a-chance-of-meatsquares
+vfibonacci_lfsr
+!s110 1574223818
+!i10b 1
+!s100 oAYLQWUgZYHIae44N4JBJ0
+ICEFBH43nP<>R7gZ85KGl71
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1574223816
+Z2 8datapath.v
+Z3 Fdatapath.v
+L0 1
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1574223818.000000
+!s107 datapath.v|
+Z5 !s90 -reportprogress|300|-timescale|1ns/1ns|datapath.v|
+!i113 1
+Z6 o-timescale 1ns/1ns
+Z7 tCvgOpt 0
+vrandom
+!s110 1574226774
+!i10b 1
+!s100 VzNNcKdm6J?ReHjMKEJHH3
+ImFj;LbD=m7VogOK:c=Oc42
+R1
+R0
+w1574226738
+R2
+R3
+L0 4
+R4
+r1
+!s85 0
+31
+!s108 1574226774.000000
+!s107 datapath.v|
+R5
+!i113 1
+R6
+R7
