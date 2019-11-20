@@ -9,4 +9,4 @@ add wave {/*}
 force {clock} 0 0, 1 2 -repeat 4
 force {reset} 0 0, 1 10
 
-run 1200 ns
+run 200 ns

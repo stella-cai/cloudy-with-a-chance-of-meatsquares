@@ -14,17 +14,31 @@ module rate_divider(out_pulse, pulse_time, reset, clk);
 			else
 				counter <= counter + 30'd1;
 		end
-	assign out_pulse = (counter == 30'd0) ? 1b'1 : 1'b0;
+	assign out_pulse = (counter == 30'd0) ? 1'b1 : 1'b0;
 endmodule
 
-module random(register_num, bit_val);
-	output [3:0] register_num;
-	output [1:0] bit_val;
-	initial
-		begin
-			register_num = $urandom%15;
-			bit_val = $urandom%2;
-		end
+// Code modified from
+// https://vlsicoding.blogspot.com/2014/07/verilog-code-for-4-bit-linear-feedback-shift-register.html
+// number occurs about 1/7 cycles
+module random (out, clock, reset);
+  input clock, reset;
+  output reg [3:0] out;
+
+
+  wire feedback;
+  reg result;
+
+  assign feedback = ~(out[3] ^ out[2]);
+
+	always @(posedge clock, negedge reset)
+	begin
+		if (~reset)
+			out = 4'b0;
+		else
+			out = {out[2:0], feedback};
+		
+		result = (out == 4'b1011) ? 1 : 0;
+	end
 endmodule
 
 module vertical_register(q, X, reset, clk);
@@ -48,7 +62,7 @@ module update_register(register_value, x_value, clk,
 		VGA_SYNC_N,						//	VGA SYNC
 		VGA_R,   						//	VGA Red[9:0]
 		VGA_G,	 						//	VGA Green[9:0]
-		VGA_B   						//	VGA Blue[9:0]);
+		VGA_B);   						//	VGA Blue[9:0]);
 	input [7:0] x_value;
 	input [27:0] register_value;
 	input clk;

@@ -85,11 +85,11 @@ module draw
 	wire resetn;
 	assign resetn = KEY[0];
 	
-	// Create the colour, x, y and writeEn wires that are inputs to the controller.
+	// Create the colour, x, y and plot wires that are inputs to the controller.
 	wire [2:0] colour;
 	wire [7:0] x;
 	wire [6:0] y;
-	wire writeEn;
+	wire plot;
 
 	// Create an Instance of a VGA controller - there can be only one!
 	// Define the number of colours as well as the initial background
@@ -100,7 +100,7 @@ module draw
 			.colour(colour),
 			.x(x),
 			.y(y),
-			.plot(writeEn),
+			.plot(plot),
 			/* Signals for the DAC to drive the monitor. */
 			.VGA_R(VGA_R),
 			.VGA_G(VGA_G),
@@ -115,16 +115,10 @@ module draw
 		defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
 		defparam VGA.BACKGROUND_IMAGE = "black.mif";
 			
-	// Put your code here. Your code should produce signals x,y,colour and writeEn/plot
+	// Put your code here. Your code should produce signals x,y,colour and plot
 	// for the VGA controller, in addition to any other functionality your design may require.
 	wire [3:0] cont;
-    datapath d0(x, y, colour, X, Y, in_colour, cont, go, resetn, clk);
-	control c0(cont, writeEn, go, resetn, clk);
-	
-    // Instansiate datapath
-	// datapath d0(...);
-
-    // Instansiate FSM control
-    // control c0(...);
+    draw_datapath d0(x, y, colour, X, Y, in_colour, cont, go, resetn, clk);
+	draw_control c0(cont, plot, go, resetn, clk);
     
 endmodule
