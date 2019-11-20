@@ -86,7 +86,7 @@ module update_register(register_value, x_value, clk,
 							color <= 3'b011;
 						else if (register_value[i + 1: i] == 2'b01)
 							color <= 3'b010;
-						else if (register_value[i + 1: i] == 2'b10)
+						else if (register_value[i + 1: i] == 2'b10 || register_value[i + 1: i] == 2'b11)
 							color <= 3'b100;
 						else
 							color <= 3'b011;
