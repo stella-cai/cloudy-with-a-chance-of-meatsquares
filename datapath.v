@@ -78,30 +78,21 @@ module update_register(register_value, x_value, clk,
 	
 	initial
 		begin
+			reg [2:0] color;
 			for (i = 0; i <= 13; i = i + 2)
 				begin
-					if (register_value[i + 1: i] == 2'b00)
-						draw d0(x_value, 6'b001000 * i, 3'b011, 1'b1, 1'b1, clk, 
-						VGA_CLK,   						//	VGA Clock
-						VGA_HS,							//	VGA H_SYNC
-						VGA_VS,							//	VGA V_SYNC
-						VGA_BLANK_N,						//	VGA BLANK
-						VGA_SYNC_N,						//	VGA SYNC
-						VGA_R,   						//	VGA Red[9:0]
-						VGA_G,	 						//	VGA Green[9:0]
-						VGA_B   						//	VGA Blue[9:0]);
-					else if (register_value[i + 1: i] == 2'b01)
-						draw d1(x_value, 6'b001000 * i, 3'b010, 1'b1, 1'b1, clk,
-						VGA_CLK,   						//	VGA Clock
-						VGA_HS,							//	VGA H_SYNC
-						VGA_VS,							//	VGA V_SYNC
-						VGA_BLANK_N,						//	VGA BLANK
-						VGA_SYNC_N,						//	VGA SYNC
-						VGA_R,   						//	VGA Red[9:0]
-						VGA_G,	 						//	VGA Green[9:0]
-						VGA_B );
-					else if (register_value[i + 1: i] == 2'b10)
-						draw d1(x_value, 6'b001000 * i, 3'b100, 1'b1, 1'b1, clk,
+					begin
+						if (register_value[i + 1: i] == 2'b00)
+							color <= 3'b011;
+						else if (register_value[i + 1: i] == 2'b01)
+							color <= 3'b010;
+						else if (register_value[i + 1: i] == 2'b10)
+							color <= 3'b100;
+						else
+							color <= 3'b011;
+					end
+					begin
+						draw d0(x_value, 6'b001000 * i, color, 1'b1, 1'b1, clk,
 						VGA_CLK,   						//	VGA Clock
 						VGA_HS,							//	VGA H_SYNC
 						VGA_VS,							//	VGA V_SYNC
@@ -110,16 +101,7 @@ module update_register(register_value, x_value, clk,
 						VGA_R,   						//	VGA Red[9:0]
 						VGA_G,	 						//	VGA Green[9:0]
 						VGA_B );
-					else
-						draw d0(x_value, 6'b001000 * i, 3'b011, 1'b1, 1'b1, clk,
-						VGA_CLK,   						//	VGA Clock
-						VGA_HS,							//	VGA H_SYNC
-						VGA_VS,							//	VGA V_SYNC
-						VGA_BLANK_N,						//	VGA BLANK
-						VGA_SYNC_N,						//	VGA SYNC
-						VGA_R,   						//	VGA Red[9:0]
-						VGA_G,	 						//	VGA Green[9:0]
-						VGA_B );
+					end
 				end
 		end 
 endmodule
