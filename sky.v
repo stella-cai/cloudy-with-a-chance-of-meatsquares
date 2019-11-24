@@ -199,96 +199,96 @@ module update_sky(clock, update, reset, col1, col2, col3, col4, col5, col6, col7
 
 					// generate bad meatsquares
 					case (rand_out[11:0])
-					12'd201 : begin
-						col1[1:0] <= 11;
-					end
+					// 12'd201 : begin
+					// 	col1[1:0] <= 11;
+					// end
 					12'd202 : begin
 						col2[1:0] <= 11;
 					end
-					12'd203 : begin
-						col3[1:0] <= 11;
-					end
+					// 12'd203 : begin
+					// 	col3[1:0] <= 11;
+					// end
 					12'd204 : begin
 						col4[1:0] <= 11;
 					end
-					12'd205 : begin
-						col5[1:0] <= 11;
-					end
+					// 12'd205 : begin
+					// 	col5[1:0] <= 11;
+					// end
 					12'd206 : begin
 						col6[1:0] <= 11;
 					end
-					12'd207 : begin
-						col7[1:0] <= 11;
-					end
+					// 12'd207 : begin
+					// 	col7[1:0] <= 11;
+					// end
 					12'd208 : begin
 						col8[1:0] <= 11;
 					end
-					12'd209 : begin
-						col9[1:0] <= 11;
-					end
+					// 12'd209 : begin
+					// 	col9[1:0] <= 11;
+					// end
 					12'd210 : begin
 						col10[1:0] <= 11;
 					end
-					12'd211 : begin
-						col11[1:0] <= 11;
-					end
+					// 12'd211 : begin
+					// 	col11[1:0] <= 11;
+					// end
 					12'd212 : begin
 						col12[1:0] <= 11;
 					end
-					12'd213 : begin
-						col13[1:0] <= 11;
-					end
+					// 12'd213 : begin
+					// 	col13[1:0] <= 11;
+					// end
 					12'd214 : begin
 						col14[1:0] <= 11;
 					end
-					12'd215 : begin
-						col15[1:0] <= 11;
-					end
+					// 12'd215 : begin
+					// 	col15[1:0] <= 11;
+					// end
 					12'd216 : begin
 						col16[1:0] <= 11;
 					end
-					12'd217 : begin
-						col17[1:0] <= 11;
-					end
+					// 12'd217 : begin
+					// 	col17[1:0] <= 11;
+					// end
 					12'd218 : begin
 						col18[1:0] <= 11;
 					end
-					12'd219 : begin
-						col19[1:0] <= 11;
-					end
+					// 12'd219 : begin
+					// 	col19[1:0] <= 11;
+					// end
 					12'd220 : begin
 						col20[1:0] <= 11;
 					end
-					12'd221 : begin
-						col21[1:0] <= 11;
-					end
+					// 12'd221 : begin
+					// 	col21[1:0] <= 11;
+					// end
 					12'd222 : begin
 						col22[1:0] <= 11;
-					end
-					12'd223 : begin
-						col23[1:0] <= 11;
-					end
+					// end
+					// 12'd223 : begin
+					// 	col23[1:0] <= 11;
+					// end
 					12'd224 : begin
 						col24[1:0] <= 11;
 					end
-					12'd225 : begin
-						col25[1:0] <= 11;
-					end
+					// 12'd225 : begin
+					// 	col25[1:0] <= 11;
+					// end
 					12'd226 : begin
 						col26[1:0] <= 11;
 					end
-					12'd227 : begin
-						col27[1:0] <= 11;
-					end
+					// 12'd227 : begin
+					// 	col27[1:0] <= 11;
+					// end
 					12'd228 : begin
 						col28[1:0] <= 11;
 					end
-					12'd229 : begin
-						col29[1:0] <= 11;
-					end
-					12'd230 : begin
-						col30[1:0] <= 11;
-					end
+					// 12'd229 : begin
+					// 	col29[1:0] <= 11;
+					// end
+					// 12'd230 : begin
+					// 	col30[1:0] <= 11;
+					// end
 					default: begin
 					end
 				endcase
