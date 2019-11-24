@@ -102,96 +102,192 @@ module update_sky(clock, update, reset, col1, col2, col3, col4, col5, col6, col7
 				col29 <= col29 << 2;
 				col30 <= col30 << 2;
 				$display("random: %b", rand_out);
-				case (rand_out[4:0])
-					5'd1 : begin
+				
+				case (rand_out[11:0])
+
+					//generate good meatsquares
+					12'd1, 12'd101 : begin
 						col1[1:0] <= 10;
 					end
-					5'd2 : begin
+					12'd2, 12'd102 : begin
 						col2[1:0] <= 10;
 					end
-					5'd3 : begin
+					12'd3, 12'd103 : begin
 						col3[1:0] <= 10;
 					end
-					5'd4 : begin
+					12'd4, 12'd104 : begin
 						col4[1:0] <= 10;
 					end
-					5'd5 : begin
+					12'd5, 12'd105 : begin
 						col5[1:0] <= 10;
 					end
-					5'd6 : begin
+					12'd6, 12'd106 : begin
 						col6[1:0] <= 10;
 					end
-					5'd7 : begin
+					12'd7, 12'd107 : begin
 						col7[1:0] <= 10;
 					end
-					5'd8 : begin
+					12'd8, 12'd108 : begin
 						col8[1:0] <= 10;
 					end
-					5'd9 : begin
+					12'd9, 12'd109 : begin
 						col9[1:0] <= 10;
 					end
-					5'd10 : begin
+					12'd10, 12'd110 : begin
 						col10[1:0] <= 10;
 					end
-					5'd11 : begin
+					12'd11, 12'd111 : begin
 						col11[1:0] <= 10;
 					end
-					5'd12 : begin
+					12'd12, 12'd112 : begin
 						col12[1:0] <= 10;
 					end
-					5'd13 : begin
+					12'd13, 12'd113 : begin
 						col13[1:0] <= 10;
 					end
-					5'd14 : begin
+					12'd14, 12'd114 : begin
 						col14[1:0] <= 10;
 					end
-					5'd15 : begin
+					12'd15, 12'd115 : begin
 						col15[1:0] <= 10;
 					end
-					5'd16 : begin
+					12'd16, 12'd116 : begin
 						col16[1:0] <= 10;
 					end
-					5'd17 : begin
+					12'd17, 12'd117 : begin
 						col17[1:0] <= 10;
 					end
-					5'd18 : begin
+					12'd18, 12'd118 : begin
 						col18[1:0] <= 10;
 					end
-					5'd19 : begin
+					12'd19, 12'd119 : begin
 						col19[1:0] <= 10;
 					end
-					5'd20 : begin
+					12'd20, 12'd120 : begin
 						col20[1:0] <= 10;
 					end
-					5'd21 : begin
+					12'd21, 12'd121 : begin
 						col21[1:0] <= 10;
 					end
-					5'd22 : begin
+					12'd22, 12'd122 : begin
 						col22[1:0] <= 10;
 					end
-					5'd23 : begin
+					12'd23, 12'd123 : begin
 						col23[1:0] <= 10;
 					end
-					5'd24 : begin
+					12'd24, 12'd124 : begin
 						col24[1:0] <= 10;
 					end
-					5'd25 : begin
+					12'd25, 12'd125 : begin
 						col25[1:0] <= 10;
 					end
-					5'd26 : begin
+					12'd26, 12'd126 : begin
 						col26[1:0] <= 10;
 					end
-					5'd27 : begin
+					12'd27, 12'd127 : begin
 						col27[1:0] <= 10;
 					end
-					5'd28 : begin
+					12'd28, 12'd128 : begin
 						col28[1:0] <= 10;
 					end
-					5'd29 : begin
+					12'd29, 12'd129 : begin
 						col29[1:0] <= 10;
 					end
-					5'd30 : begin
+					12'd30, 12'd130 : begin
 						col30[1:0] <= 10;
+					end
+
+					// generate bad meatsquares
+					case (rand_out[11:0])
+					12'd201 : begin
+						col1[1:0] <= 11;
+					end
+					12'd202 : begin
+						col2[1:0] <= 11;
+					end
+					12'd203 : begin
+						col3[1:0] <= 11;
+					end
+					12'd204 : begin
+						col4[1:0] <= 11;
+					end
+					12'd205 : begin
+						col5[1:0] <= 11;
+					end
+					12'd206 : begin
+						col6[1:0] <= 11;
+					end
+					12'd207 : begin
+						col7[1:0] <= 11;
+					end
+					12'd208 : begin
+						col8[1:0] <= 11;
+					end
+					12'd209 : begin
+						col9[1:0] <= 11;
+					end
+					12'd210 : begin
+						col10[1:0] <= 11;
+					end
+					12'd211 : begin
+						col11[1:0] <= 11;
+					end
+					12'd212 : begin
+						col12[1:0] <= 11;
+					end
+					12'd213 : begin
+						col13[1:0] <= 11;
+					end
+					12'd214 : begin
+						col14[1:0] <= 11;
+					end
+					12'd215 : begin
+						col15[1:0] <= 11;
+					end
+					12'd216 : begin
+						col16[1:0] <= 11;
+					end
+					12'd217 : begin
+						col17[1:0] <= 11;
+					end
+					12'd218 : begin
+						col18[1:0] <= 11;
+					end
+					12'd219 : begin
+						col19[1:0] <= 11;
+					end
+					12'd220 : begin
+						col20[1:0] <= 11;
+					end
+					12'd221 : begin
+						col21[1:0] <= 11;
+					end
+					12'd222 : begin
+						col22[1:0] <= 11;
+					end
+					12'd223 : begin
+						col23[1:0] <= 11;
+					end
+					12'd224 : begin
+						col24[1:0] <= 11;
+					end
+					12'd225 : begin
+						col25[1:0] <= 11;
+					end
+					12'd226 : begin
+						col26[1:0] <= 11;
+					end
+					12'd227 : begin
+						col27[1:0] <= 11;
+					end
+					12'd228 : begin
+						col28[1:0] <= 11;
+					end
+					12'd229 : begin
+						col29[1:0] <= 11;
+					end
+					12'd230 : begin
+						col30[1:0] <= 11;
 					end
 					default: begin
 					end
