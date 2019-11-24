@@ -338,8 +338,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col1[i +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col1[i +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 0 + (k / 4);
@@ -361,8 +364,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col2[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col2[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 + (k / 4);
@@ -383,8 +389,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col3[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col3[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 2 + (k / 4);
@@ -403,8 +412,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col4[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col4[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 3 + (k / 4);
@@ -423,8 +435,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col5[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col5[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 4 + (k / 4);
@@ -443,8 +458,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col6[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col6[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 5 + (k / 4);
@@ -463,8 +481,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col7[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col7[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 6 + (k / 4);
@@ -483,8 +504,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col8[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col8[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 7 + (k / 4);
@@ -503,8 +527,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col9[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col9[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 8 + (k / 4);
@@ -523,8 +550,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col10[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col10[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 9 + (k / 4);
@@ -544,8 +574,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col11[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col11[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 10 + (k / 4);
@@ -565,8 +598,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col12[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col12[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 11 + (k / 4);
@@ -585,8 +621,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col13[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col13[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 12 + (k / 4);
@@ -606,8 +645,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col14[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col14[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 13 + (k / 4);
@@ -627,8 +669,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col15[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col15[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 14 + (k / 4);
@@ -648,8 +693,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col16[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col16[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 15 + (k / 4);
@@ -669,8 +717,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col17[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col17[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 16 + (k / 4);
@@ -690,8 +741,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col18[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col18[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 17 + (k / 4);
@@ -711,8 +765,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col19[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col19[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 18 + (k / 4);
@@ -732,8 +789,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col20[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col20[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 19 + (k / 4);
@@ -753,8 +813,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col21[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col21[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 20 + (k / 4);
@@ -774,8 +837,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col22[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col22[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 21 + (k / 4);
@@ -795,8 +861,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col23[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col23[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 22 + (k / 4);
@@ -816,8 +885,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col24[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col24[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 23 + (k / 4);
@@ -837,8 +909,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col25[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col25[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 24 + (k / 4);
@@ -858,8 +933,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col26[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col26[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 25 + (k / 4);
@@ -879,8 +957,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col27[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col27[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 26 + (k / 4);
@@ -900,8 +981,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col28[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col28[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 27 + (k / 4);
@@ -921,8 +1005,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col29[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col29[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 28 + (k / 4);
@@ -942,8 +1029,11 @@ module draw_cols(clock, reset, col1, col2, col3, col4, col5, col6, col7, col8, c
 					if (col30[j +: 2] == 0) begin
 						color <= 3'b000;
 					end
+					else if (col30[j +: 2] == 2'b10) begin
+						color <= 3'b011;
+					end
 					else begin
-						color <= 3'b111;
+						color <= 3'b100;
 					end
 
 					x <= 4 * 29 + (k / 4);

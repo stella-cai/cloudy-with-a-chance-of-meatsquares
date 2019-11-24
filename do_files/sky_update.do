@@ -10,4 +10,4 @@ force {clock} 0 0, 1 2 -repeat 4
 force {reset} 0 0, 1 10
 force {delay_enable} 0 0, 1 5 -repeat 10
 
-run 200 ns
+run 1600 ns
