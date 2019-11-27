@@ -4,6 +4,8 @@ module catcher(input clock, input reset, input enable_tracking, input draw,
 inout PS2_CLK, inout PS2_DAT, 
 output [7:0] x, output [6:0] y, output [2:0] color, output finish_drawing);
 
+wire [8:0] position_mouse;
+wire [8:0] position_keys;
 wire [8:0] position;
 
 // we only care about the x-position (position) of the mouse. Ignore these outputs.
@@ -12,16 +14,33 @@ wire right_click, left_click;
 wire [3:0] count;
 
 mouse_tracker mouse(.clock(clock), .reset(reset), .enable_tracking(enable_tracking), .PS2_CLK(PS2_CLK), .PS2_DAT(PS2_DAT),
-.x_pos(position), .y_pos(y_position), .left_click(left_click), .right_click(right_click), .count(count));
+.x_pos(position_mouse), .y_pos(y_position), .left_click(left_click), .right_click(right_click), .count(count));
 
 defparam    mouse.XMAS = 119,
             mouse.YMAX = 119,
             mouse.XMIN = 0,
             mouse.YMIN = 110;
 
+keyboard keyboard(clock, reset, PS2_CLK, PS2_DAT, position_keys);
+
+always @ (*) begin
+    if (enable_tracking)
+        position <= position_mouse;
+    else
+        position <= position_keys;
+end
+
 draw_catcher d(.clock(clock), .reset(reset), .draw(draw), .position(position[7:0]), 
 .finish_drawing(finish_drawing), .x(x), .y(y), .color(color));
 
+
+endmodule
+
+module keyboard(input clock, input reset, inout PS2_CLK, inout PS2_DAT, output left, output right);
+    // ignore these
+    wire w, a, s, d, up, down, space, enter;
+
+    keyboard_tracker #(.PULSE_OR_HOLD(0)) keys(clock, reset, PS2_CLK, PS2_DAT, w, a, s, d, left, right, up, down, space, enter);
 
 endmodule
 

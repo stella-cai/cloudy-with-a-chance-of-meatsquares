@@ -15,10 +15,10 @@ module control(clock, reset, start,
                 s_start_wait = 3'd1,
                 s_update = 3'd2,
                 s_draw_squares = 3'd3,
-                s_draw_catcher = 3'd7;
-                s_reset_count = 3'd4,
-                s_count = 3'd5,
-                s_end = 3'd6;
+                s_draw_catcher = 3'd4,
+                s_reset_count = 3'd5,
+                s_count = 3'd6,
+                s_end = 3'd7;
 
 
     //state table
