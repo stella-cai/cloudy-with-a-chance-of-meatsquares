@@ -1,11 +1,9 @@
-`include "PS2_Mouse_Controller.v"
-
 module catcher(input clock, input reset, input enable_tracking, input draw,
 inout PS2_CLK, inout PS2_DAT, 
 output [7:0] x, output [6:0] y, output [2:0] color, output finish_drawing);
 
 wire [8:0] position_mouse;
-wire [8:0] position_keys;
+reg [8:0] position_keys;
 wire [8:0] position;
 
 // we only care about the x-position (position) of the mouse. Ignore these outputs.
@@ -21,7 +19,7 @@ defparam    mouse.XMAS = 119,
             mouse.XMIN = 0,
             mouse.YMIN = 110;
 
-keyboard keyboard(clock, reset, PS2_CLK, PS2_DAT, position_keys);
+keyboard keyboard(clock, reset, draw, PS2_CLK, PS2_DAT, position_keys);
 
 always @ (*) begin
     if (enable_tracking)
@@ -36,11 +34,26 @@ draw_catcher d(.clock(clock), .reset(reset), .draw(draw), .position(position[7:0
 
 endmodule
 
-module keyboard(input clock, input reset, inout PS2_CLK, inout PS2_DAT, output left, output right);
+module keyboard(input clock, input reset, input draw, inout PS2_CLK, inout PS2_DAT, inout position_keys);
+    
+    wire left, right;
     // ignore these
     wire w, a, s, d, up, down, space, enter;
 
     keyboard_tracker #(.PULSE_OR_HOLD(0)) keys(clock, reset, PS2_CLK, PS2_DAT, w, a, s, d, left, right, up, down, space, enter);
+
+    always @ (posedge clock) begin
+        if (draw) begin
+            if(left) begin
+                if(position_keys > 0)
+                    position_keys <=  position_keys - 1;
+            end
+            if(right) begin
+                if (position_keys < 119)
+                    position_keys <= position_keys + 1;
+            end
+        end
+    end
 
 endmodule
 

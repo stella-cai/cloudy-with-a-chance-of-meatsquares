@@ -3,6 +3,7 @@ module main
 		CLOCK_50,						//	On Board 50 MHz
 		// Your inputs and outputs here
         KEY,
+		SW,
 		// The ports below are for the VGA output.  Do not change.
 		VGA_CLK,   						//	VGA Clock
 		VGA_HS,							//	VGA H_SYNC
@@ -19,6 +20,7 @@ module main
 
 	input			CLOCK_50;				//	50 MHz
 	input   [3:0]   KEY;
+	input [1:0] SW;
 
 	// Declare your inputs and outputs here
 	// Do not change the following outputs
@@ -38,6 +40,9 @@ module main
 
 	wire start;
 	assign start = ~KEY[1];
+
+	wire enable_mouse;
+	assign enable_mouse = SW[1];
 	
 	// Create the colour, x, y and writeEn wires that are inputs to the controller.
 	wire [2:0] color;
@@ -92,7 +97,7 @@ module main
 	
 	sky s(CLOCK_50, reset, delay_enable, draw, x_sky, y_sky, color_sky, finish_drawing_squares);
 
-	catcher catch(.clock(CLOCK_50), .reset(reset), .enable_tracking(1'b1), .draw(draw_catcher),
+	catcher catch(.clock(CLOCK_50), .reset(reset), .enable_tracking(enable_mouse), .draw(draw_catcher),
 					.PS2_CLK(PS2_CLK), .PS2_DAT(PS2_DAT), 
 					.x(x_catcher), .y(y_catcher), .color(color_catcher), .finish_drawing(finish_drawing_catcher));
 
