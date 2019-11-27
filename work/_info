@@ -9,152 +9,175 @@ z2
 cModel Technology
 Z0 dC:/Users/Stella/Documents/School/CSC258/Project/cloudy-with-a-chance-of-meatsquares
 <<<<<<< HEAD
-vfibonacci_lfsr
-!s110 1574223818
-!i10b 1
-!s100 oAYLQWUgZYHIae44N4JBJ0
-ICEFBH43nP<>R7gZ85KGl71
-Z1 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1574223816
-8datapath.v
-Fdatapath.v
+>>>>>>> 02ecd957c9fbee3e9c1f953b9cd5afe1bccbb696
+R0
+vcontrol
+!s110 1574884591
+!i10b 1
+!s100 ngIo>E`FTCBRIA]fm;4UK2
+INB7:LQWX9T`ILJZjQ>;>;3
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+dC:/Users/Nachi/Desktop/Uft/CSC258/CSC258_Project/cloudy-with-a-chance-of-meatsquares
+w1574882954
+8control.v
+Fcontrol.v
 L0 1
 Z2 OV;L;10.5b;63
 r1
 !s85 0
 31
-!s108 1574223818.000000
-!s107 datapath.v|
-!s90 -reportprogress|300|-timescale|1ns/1ns|datapath.v|
+!s108 1574884591.000000
+!s107 control.v|
+!s90 -reportprogress|300|-timescale|1ns/1ns|control.v|
 !i113 1
 Z3 o-timescale 1ns/1ns
 Z4 tCvgOpt 0
-vrandom
-Z5 !s110 1574231401
+vfibonacci_lfsr
+!s110 1574223818
 !i10b 1
-!s100 0UR0d_?Y=5SAoiP4B=7Ml1
-I1iKfUzd[XKIlb_ZNg19bP1
+!s100 oAYLQWUgZYHIae44N4JBJ0
+ICEFBH43nP<>R7gZ85KGl71
 R1
 R0
-Z6 w1574231395
-Z7 8sky.v
-Z8 Fsky.v
+w1574223816
+Z5 8datapath.v
+Z6 Fdatapath.v
 L0 1
 R2
 r1
 !s85 0
 31
-Z9 !s108 1574231401.000000
-Z10 !s107 sky.v|
-Z11 !s90 -reportprogress|300|-timescale|1ns/1ns|sky.v|
+!s108 1574223818.000000
+Z7 !s107 datapath.v|
+Z8 !s90 -reportprogress|300|-timescale|1ns/1ns|datapath.v|
+!i113 1
+R3
+R4
+vrandom
+Z9 !s110 1574231401
+!i10b 1
+!s100 0UR0d_?Y=5SAoiP4B=7Ml1
+I1iKfUzd[XKIlb_ZNg19bP1
+R1
+R0
+Z10 w1574231395
+Z11 8sky.v
+Z12 Fsky.v
+L0 1
+R2
+r1
+!s85 0
+31
+Z13 !s108 1574231401.000000
+Z14 !s107 sky.v|
+Z15 !s90 -reportprogress|300|-timescale|1ns/1ns|sky.v|
+!i113 1
+R3
+R4
+vrandom
+Z16 !s110 1574228805
+!i10b 1
+!s100 W^HfzI3WZ=WP9?AE8F_>T3
+I7V=2bgO4zAzg@ag]SjN8d3
+R1
+R0
+Z17 w1574228801
+R5
+R6
+L0 23
+R2
+r1
+!s85 0
+31
+Z18 !s108 1574228805.000000
+R7
+R8
+!i113 1
+R3
+R4
+vrate_divider
+R16
+!i10b 1
+!s100 P<kKH]bLCz;<?aKlKj`jg0
+I4oS6;9R61_8@MRhkZjz3n3
+R1
+R0
+R17
+R5
+R6
+L0 2
+R2
+r1
+!s85 0
+31
+R18
+R7
+R8
 !i113 1
 R3
 R4
 vsky
-R5
+R9
 !i10b 1
 !s100 `UFR=M3ISli:U_Cgj@eWg0
 I?SN3I`MWz6n4VKVHB`DZ`0
 R1
 R0
-R6
-R7
-R8
+R10
+R11
+R12
 L0 22
 R2
 r1
 !s85 0
 31
-R9
-R10
-R11
+R13
+R14
+R15
 !i113 1
 R3
 R4
 vupdate_sky
-R5
+R9
 !i10b 1
 !s100 Fz40DS>Lze`DYLz]WA@]n0
 In2o7V<<ld5mF@b9ze0idH2
 R1
 R0
-R6
-R7
-R8
+R10
+R11
+R12
 L0 33
 R2
 r1
 !s85 0
 31
-R9
-R10
-R11
+R13
+R14
+R15
 !i113 1
 R3
 R4
 =======
-vrandom
-Z1 !s110 1574228805
-!i10b 1
-!s100 W^HfzI3WZ=WP9?AE8F_>T3
-I7V=2bgO4zAzg@ag]SjN8d3
-Z2 VDg1SIo80bB@j0V0VzS_@n1
-R0
-Z3 w1574228801
-Z4 8datapath.v
-Z5 Fdatapath.v
-L0 23
-Z6 OV;L;10.5b;63
-r1
-!s85 0
-31
-Z7 !s108 1574228805.000000
-Z8 !s107 datapath.v|
-Z9 !s90 -reportprogress|300|-timescale|1ns/1ns|datapath.v|
-!i113 1
-Z10 o-timescale 1ns/1ns
-Z11 tCvgOpt 0
-vrate_divider
-R1
-!i10b 1
-!s100 P<kKH]bLCz;<?aKlKj`jg0
-I4oS6;9R61_8@MRhkZjz3n3
-R2
-R0
-R3
-R4
-R5
-L0 2
-R6
-r1
-!s85 0
-31
-R7
-R8
-R9
-!i113 1
-R10
-R11
 vvertical_register
-R1
+R16
 !i10b 1
 !s100 a9b<b<0[Vj;^jzS_cYQTF1
 Ia5_f8RK@A^FH8]fXNlTnD1
-R2
+R1
 R0
-R3
-R4
+R17
 R5
-L0 44
 R6
+L0 44
+R2
 r1
 !s85 0
 31
+R18
 R7
 R8
-R9
 !i113 1
-R10
-R11
->>>>>>> 02ecd957c9fbee3e9c1f953b9cd5afe1bccbb696
+R3
+R4
