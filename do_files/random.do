@@ -1,5 +1,5 @@
 vlib work
-vlog -timescale 1ns/1ns random.v
+vlog -timescale 1ns/1ns ../random.v
 vsim random
 # Log all signals and add some signals to waveform window.
 log {/*}

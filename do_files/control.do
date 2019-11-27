@@ -5,7 +5,7 @@ vlib work2
 # The timescale argument defines default time unit
 # (used when no unit is specified), while the second number
 # defines precision (all times are rounded to this value)
-vlog -timescale 1ns/1ns control.v
+vlog -timescale 1ns/1ns ../control.v
 
 # Load simulation using mux as the top level simulation module.
 vsim control
