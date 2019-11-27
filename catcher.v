@@ -1,5 +1,3 @@
-`include "PS2_Mouse_Controller.v"
-
 module catcher(input clock, input reset, input enable_tracking, input draw,
 inout PS2_CLK, inout PS2_DAT, 
 output [7:0] x, output [6:0] y, output [2:0] color, output finish_drawing);
@@ -50,7 +48,7 @@ module draw_catcher(input clock, input reset, input draw, input [7:0] position, 
                 if ( i < 119) begin
                     finish_drawing <= 0;
                     x <= i;
-                    if (position - 3 < i && position + 3 > i) begin
+                    if (position - 4 < i && position + 4 > i) begin
                         // this pixel should be drawn
                         color <= 3'b001;
                         if(j == 2'b00) begin
