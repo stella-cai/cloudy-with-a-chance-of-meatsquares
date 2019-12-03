@@ -1,11 +1,12 @@
 module sky(clock, reset, update, draw,
-			x, y, color, finish_drawing);
+			x, y, color, finish_drawing, ground);
 
 	input clock, reset, update, draw;
 	output [7:0] x;
 	output [6:0] y;
 	output [2:0] color;
 	output finish_drawing;
+	output [59:0] ground;
 
 	wire [55:0] col1, col2, col3, col4, col5, col6, col7, col8, col9, col10,
 					col11, col12, col13, col14, col15, col16, col17, col18, col19, col20,
@@ -14,7 +15,8 @@ module sky(clock, reset, update, draw,
 	update_sky u(clock, update, reset, 
 					col1, col2, col3, col4, col5, col6, col7, col8, col9, col10,
 					col11, col12, col13, col14, col15, col16, col17, col18, col19, col20,
-					col21, col22, col23, col24, col25, col26, col27, col28, col29, col30);
+					col21, col22, col23, col24, col25, col26, col27, col28, col29, col30,
+					ground);
 					
 	draw_cols d(clock, reset, 
 					col1, col2, col3, col4, col5, col6, col7, col8, col9, col10,
@@ -26,11 +28,14 @@ endmodule
 
 module update_sky(clock, update, reset, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10,
 					col11, col12, col13, col14, col15, col16, col17, col18, col19, col20,
-					col21, col22, col23, col24, col25, col26, col27, col28, col29, col30);
+					col21, col22, col23, col24, col25, col26, col27, col28, col29, col30,
+					ground);
+
 	input clock, update, reset;
 	output reg [55:0] col1, col2, col3, col4, col5, col6, col7, col8, col9, col10,
 					col11, col12, col13, col14, col15, col16, col17, col18, col19, col20,
 					col21, col22, col23, col24, col25, col26, col27, col28, col29, col30;
+	output reg ground;
 
 	wire [11:0] rand_out;
 	random randint(rand_out, clock, reset);
@@ -70,7 +75,38 @@ module update_sky(clock, update, reset, col1, col2, col3, col4, col5, col6, col7
 		end
 		else if (update)
 			begin: updating_sky_meatballs
-				$display("inside update");
+				// ground[59:58] represents the leftmost column, and ground[1:0] represents 
+				ground[59:58] <= col1[55:54];
+				ground[57:56] <= col2[55:54];
+				ground[55:54] <= col3[55:54];
+				ground[53:52] <= col4[55:54];
+				ground[51:50] <= col5[55:54];
+				ground[49:48] <= col6[55:54];
+				ground[47:46] <= col7[55:54];
+				ground[45:44] <= col8[55:54];
+				ground[43:42] <= col9[55:54];
+				ground[41:40] <= col10[55:54];
+				ground[39:38] <= col11[55:54];
+				ground[37:36] <= col12[55:54];
+				ground[35:34] <= col13[55:54];
+				ground[33:32] <= col14[55:54];
+				ground[31:30] <= col15[55:54];
+				ground[29:28] <= col16[55:54];
+				ground[27:26] <= col17[55:54];
+				ground[25:24] <= col18[55:54];
+				ground[23:22] <= col19[55:54];
+				ground[21:20] <= col20[55:54];
+				ground[19:18] <= col21[55:54];
+				ground[17:16] <= col22[55:54];
+				ground[15:14] <= col23[55:54];
+				ground[13:12] <= col24[55:54];
+				ground[11:10] <= col25[55:54];
+				ground[9:8 <= col26[55:54];
+				ground[7:6] <= col27[55:54];
+				ground[5:4] <= col28[55:54];
+				ground[3:2] <= col29[55:54];
+				ground[1:0] <= col30[55:54];
+				
 				col1 <= col1 << 2;
 				col2 <= col2 << 2;
 				col3 <= col3 << 2;
@@ -101,7 +137,7 @@ module update_sky(clock, update, reset, col1, col2, col3, col4, col5, col6, col7
 				col28 <= col28 << 2;
 				col29 <= col29 << 2;
 				col30 <= col30 << 2;
-				$display("random: %b", rand_out);
+				
 				
 				case (rand_out[9:0])
 
