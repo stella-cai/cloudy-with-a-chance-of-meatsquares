@@ -1,3 +1,45 @@
+module score(input clock, input reset, input update, input draw,
+					input [59:0] ground, input[8:0] mouse_position,
+					output [7:0] x, output [6:0] y, output [2:0] color,
+					output finish_drawing);
+
+	draw_score drawer(clock, reset, draw, x, y, color, finish_drawing);
+endmodule
+
+module draw_score(input clock, input reset, input draw,
+					output [7:0] x, output [6:0] y, output [2:0] color,
+										output finish_drawing);
+	// you're probably gonna need some more inputs (lives, position, points), depending on if you do the updating
+	// in this module or in a seperate module
+
+	// I set up the drawing cycle and signaling for you
+
+	// initial works for this dw (I've used it in catcher and sky)
+	initial
+        finish_drawing = 0;
+
+	always @(posedge clock) begin
+        if(!reset) begin
+                x <= 0;
+                y <= 0;
+                color <= 0;
+                finish_drawing = 0;
+        end
+
+		if (draw == 1) begin
+			if ( ... condition that should be true when drawing isn't done) begin
+				finish_drawing <= 0;
+				// assign x, y, and color here
+
+			end
+
+			else begin
+				finish_drawing <= 1;
+			end
+		end
+	end
+endmodule
+
 module decimal_decoder(output reg [29:0] map, input [6:0] score, input clk, input resetn);
 	wire [3:0] first_digit, second_digit;
 	two_digits t0(score, first_digit, second_digit, clk);

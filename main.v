@@ -99,6 +99,10 @@ module main
 					.x(x_catcher), .y(y_catcher), .color(color_catcher), .finish_drawing(finish_drawing_catcher)
 					.position(mouse_position));
 	
+	score scorekeeper(.clock(CLOCK_50), .reset(reset), .update(update), .draw(draw_score),
+					.ground(ground), .mouse_position(mouse_position),
+					.x(x_score), .y(y_score), .color(color_score),
+					.finish_drawing(finish_drawing_score));
 
 	vga_select select(CLOCK_50, x_sky, y_sky, color_sky,
 					x_catcher, y_catcher, color_catcher,
