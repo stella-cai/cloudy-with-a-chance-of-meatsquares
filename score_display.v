@@ -18,6 +18,8 @@ module decimal_decoder(output reg [29:0] map, input [6:0] score, input clk, inpu
 			4'd7: map_first_digit = 15'b100100100100111;
 			4'd8: map_first_digit = 15'b111101111101111;
 			4'd9: map_first_digit = 15'b100100111101111;
+			default: map_first_digit = 15'b111101101101111;
+		endcase
 	end
 	always @(posedge clk)begin
 		mid_map_second <= second_digit;
@@ -32,6 +34,8 @@ module decimal_decoder(output reg [29:0] map, input [6:0] score, input clk, inpu
 			4'd7: map_second_digit = 15'b100100100100111;
 			4'd8: map_second_digit = 15'b111101111101111;
 			4'd9: map_second_digit = 15'b100100111101111;
+			default: map_first_digit = 15'b111101101101111;
+		endcase
 	end
 	always @(posedge clk)begin
 		if (!resetn)
