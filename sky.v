@@ -103,99 +103,100 @@ module update_sky(clock, update, reset, col1, col2, col3, col4, col5, col6, col7
 				col30 <= col30 << 2;
 				$display("random: %b", rand_out);
 				
-				case (rand_out[11:0])
+				case (rand_out[9:0])
 
 					//generate good meatsquares
-					12'd1, 12'd101 : begin
+					10'd1, 10'd101 : begin
 						col1[1:0] <= 10;
 					end
-					12'd2, 12'd102 : begin
+					10'd2, 10'd102 : begin
 						col2[1:0] <= 10;
 					end
-					12'd3, 12'd103 : begin
+					10'd3, 10'd103 : begin
 						col3[1:0] <= 10;
 					end
-					12'd4, 12'd104 : begin
+					10'd4, 10'd104 : begin
 						col4[1:0] <= 10;
 					end
-					12'd5, 12'd105 : begin
+					10'd5, 10'd105 : begin
 						col5[1:0] <= 10;
 					end
-					12'd6, 12'd106 : begin
+					10'd6, 10'd106 : begin
 						col6[1:0] <= 10;
 					end
-					12'd7, 12'd107 : begin
+					10'd7, 10'd107 : begin
 						col7[1:0] <= 10;
 					end
-					12'd8, 12'd108 : begin
+					10'd8, 10'd108 : begin
 						col8[1:0] <= 10;
 					end
-					12'd9, 12'd109 : begin
+					10'd9, 10'd109 : begin
 						col9[1:0] <= 10;
 					end
-					12'd10, 12'd110 : begin
+					10'd10, 10'd110 : begin
 						col10[1:0] <= 10;
 					end
-					12'd11, 12'd111 : begin
+					10'd11, 10'd111 : begin
 						col11[1:0] <= 10;
 					end
-					12'd12, 12'd112 : begin
+					10'd12, 10'd112 : begin
 						col12[1:0] <= 10;
 					end
-					12'd13, 12'd113 : begin
+					10'd13, 10'd113 : begin
 						col13[1:0] <= 10;
 					end
-					12'd14, 12'd114 : begin
+					10'd14, 10'd114 : begin
 						col14[1:0] <= 10;
 					end
-					12'd15, 12'd115 : begin
+					10'd15, 10'd115 : begin
 						col15[1:0] <= 10;
 					end
-					12'd16, 12'd116 : begin
+					10'd16, 10'd116 : begin
 						col16[1:0] <= 10;
 					end
-					12'd17, 12'd117 : begin
+					10'd17, 10'd117 : begin
 						col17[1:0] <= 10;
 					end
-					12'd18, 12'd118 : begin
+					10'd18, 10'd118 : begin
 						col18[1:0] <= 10;
 					end
-					12'd19, 12'd119 : begin
+					10'd19, 10'd119 : begin
 						col19[1:0] <= 10;
 					end
-					12'd20, 12'd120 : begin
+					10'd20, 10'd120 : begin
 						col20[1:0] <= 10;
 					end
-					12'd21, 12'd121 : begin
+					10'd21, 10'd121 : begin
 						col21[1:0] <= 10;
 					end
-					12'd22, 12'd122 : begin
+					10'd22, 10'd122 : begin
 						col22[1:0] <= 10;
 					end
-					12'd23, 12'd123 : begin
+					10'd23, 10'd123 : begin
 						col23[1:0] <= 10;
 					end
-					12'd24, 12'd124 : begin
+					10'd24, 10'd124 : begin
 						col24[1:0] <= 10;
 					end
-					12'd25, 12'd125 : begin
+					10'd25, 10'd125 : begin
 						col25[1:0] <= 10;
 					end
-					12'd26, 12'd126 : begin
+					10'd26, 10'd126 : begin
 						col26[1:0] <= 10;
 					end
-					12'd27, 12'd127 : begin
+					10'd27, 10'd127 : begin
 						col27[1:0] <= 10;
 					end
-					12'd28, 12'd128 : begin
+					10'd28, 10'd128 : begin
 						col28[1:0] <= 10;
 					end
-					12'd29, 12'd129 : begin
+					10'd29, 10'd129 : begin
 						col29[1:0] <= 10;
 					end
-					12'd30, 12'd130 : begin
+					10'd30, 10'd130 : begin
 						col30[1:0] <= 10;
 					end
+				endcase
 
 					// generate bad meatsquares
 					case (rand_out[11:0])
@@ -267,19 +268,19 @@ module update_sky(clock, update, reset, col1, col2, col3, col4, col5, col6, col7
 					// end
 					// 12'd223 : begin
 					// 	col23[1:0] <= 11;
-					// end
+					 end
 					12'd224 : begin
 						col24[1:0] <= 11;
 					end
 					// 12'd225 : begin
 					// 	col25[1:0] <= 11;
-					// end
+//					 end
 					12'd226 : begin
 						col26[1:0] <= 11;
 					end
 					// 12'd227 : begin
 					// 	col27[1:0] <= 11;
-					// end
+//					 end
 					12'd228 : begin
 						col28[1:0] <= 11;
 					end
@@ -288,7 +289,7 @@ module update_sky(clock, update, reset, col1, col2, col3, col4, col5, col6, col7
 					// end
 					// 12'd230 : begin
 					// 	col30[1:0] <= 11;
-					// end
+//					 end
 					default: begin
 					end
 				endcase

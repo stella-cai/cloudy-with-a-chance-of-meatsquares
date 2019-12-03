@@ -117,6 +117,7 @@
  * Credit for low-level PS/2 driver module (also a resource for PS/2 protocol):
  * http://www.eecg.toronto.edu/~jayar/ece241_08F/AudioVideoCores/ps2/ps2.html
  */
+
 module mouse_tracker(
     input clock,
 	 input reset,
