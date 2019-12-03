@@ -1,8 +1,7 @@
 module catcher(input clock, input reset, input enable_tracking, input draw,
 inout PS2_CLK, inout PS2_DAT, 
-output [7:0] x, output [6:0] y, output [2:0] color, output finish_drawing);
-
-wire [8:0] position;
+output [7:0] x, output [6:0] y, output [2:0] color, output finish_drawing,
+output [8:0] position);
 
 // we only care about the x-position (position) of the mouse. Ignore these outputs.
 wire [8:0] y_position;

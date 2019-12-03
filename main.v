@@ -69,13 +69,14 @@ module main
 		defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
 	 	defparam VGA.BACKGROUND_IMAGE = "black.mif";
     
-	wire draw_squares, draw_catcher; 
+	wire draw_squares, draw_catcher, draw_score; 
     wire reset_count, delay_enable;
-	wire finish_game, finish_drawing_squares, finish_drawing_catcher;
-	wire [7:0] x_sky;
-	wire [6:0] y_sky;
-	wire [7:0] x_catcher;
-	wire [6:0] y_catcher;
+	wire finish_game, finish_drawing_squares, finish_drawing_catcher, finish_drawing_score;
+	wire [7:0] x_sky, x_catcher, x_score;
+	wire [6:0] y_sky, y_catcher, y_score;
+
+	wire [59:0] ground;
+	wire [8:0] mouse_position;
 
 	wire [2:0] color_sky, color_catcher;
     
@@ -83,18 +84,21 @@ module main
 	
 	control c(.clock(CLOCK_50), .reset(reset), .start(start), 
 	.delay_enable(delay_enable), 
-	.finish_game(1'b0), 
+	.finish_game(finish_game), 
 	.update(update), 
 	.plot(plot), 
-	.draw_squares(draw_squares), .draw_catcher(draw_catcher), 
+	.draw_squares(draw_squares), .draw_catcher(draw_catcher), .draw_score(draw_score),
 	.reset_count(reset_count), 
-	.finish_drawing_squares(finish_drawing_squares), .finish_drawing_catcher(finish_drawing_catcher)); 
+	.finish_drawing_squares(finish_drawing_squares), .finish_drawing_catcher(finish_drawing_catcher),
+	.finish_drawing_score(finish_drawing_score)); 
 	
-	sky s(CLOCK_50, reset, delay_enable, draw_squares, x_sky, y_sky, color_sky, finish_drawing_squares);
+	sky s(CLOCK_50, reset, delay_enable, draw_squares, x_sky, y_sky, color_sky, finish_drawing_squares, ground);
 
 	catcher catch(.clock(CLOCK_50), .reset(reset), .enable_tracking(1'b1), .draw(draw_catcher),
 					.PS2_CLK(PS2_CLK), .PS2_DAT(PS2_DAT), 
-					.x(x_catcher), .y(y_catcher), .color(color_catcher), .finish_drawing(finish_drawing_catcher));
+					.x(x_catcher), .y(y_catcher), .color(color_catcher), .finish_drawing(finish_drawing_catcher)
+					.position(mouse_position));
+	
 
 	vga_select select(CLOCK_50, x_sky, y_sky, color_sky,
 					x_catcher, y_catcher, color_catcher,
@@ -105,7 +109,8 @@ endmodule
 module vga_select(input clock,
 					input [7:0] x_sky, input [6:0] y_sky, input [2:0] color_sky,
 					input [7:0] x_catcher, input [6:0] y_catcher, input [2:0] color_catcher,
-					input draw_catcher, input draw_squares,
+					input [7:0] x_score, input [6:0] y_score, input [2:0] color_score,
+					input draw_catcher, input draw_squares, input draw_score,
 					output reg [7:0] x, output reg [6:0] y, output reg [2:0] color);
 
 	always @(posedge clock) begin
@@ -120,6 +125,12 @@ module vga_select(input clock,
 			color <= color_catcher;
 			x <= x_catcher;
 			y <= y_catcher;
+		end
+
+		else if(draw_score == 1'b1) begin
+			color <= color_score;
+			x <= x_score;
+			y <= y_score;
 		end
 	end
 
