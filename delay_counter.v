@@ -1,18 +1,29 @@
+module delay_counter(clock, enable, reset);
+    input clock, reset;
+    output enable;
 
-module rate_divider2(out_pulse, pulse_time, reset, clk);
-	output out_pulse;
-	input [29:0] pulse_time;
-	input clk, reset;
-	reg counter;
-	wire [29:0] timer;
-	always @(posedge clk)
-		begin
-			if (!reset)
-				counter <= 30'd0;
-			else if (counter == pulse_time)
-				counter <= 30'd0;
-			else
-				counter <= counter + 30'd1;
-		end
-	assign out_pulse = (counter == 30'd0) ? 1b'1 : 1'b0;
+    localparam frames = 5'd15;
+    localparam clock_cycles = 20'd833332;
+
+    reg [19:0] count_cycles;
+    reg [4:0] count_frames;
+    wire count;
+
+    always @(posedge clock)
+    begin
+        if(reset == 0 || count_cycles == 0)
+             count_cycles <= clock_cycles;
+//            count_cycles <= 32'b0;
+        else
+            count_cycles <= count_cycles - 1;
+
+        if(reset == 0 || enable)
+             count_frames <= frames;
+//            count_frames <= 32'b0;
+        else if(count)
+            count_frames <= count_frames - 1;
+    end
+    assign count = (count_cycles == 0) ? 1 : 0;
+    assign enable = (count_frames == 0) ? 1 : 0;
+
 endmodule

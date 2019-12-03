@@ -1,0 +1,204 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Stella/Documents/School/CSC258/Project/cloudy-with-a-chance-of-meatsquares
+<<<<<<< HEAD
+R0
+>>>>>>> 02ecd957c9fbee3e9c1f953b9cd5afe1bccbb696
+R0
+vfibonacci_lfsr
+!s110 1574223818
+!i10b 1
+!s100 oAYLQWUgZYHIae44N4JBJ0
+ICEFBH43nP<>R7gZ85KGl71
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1574223816
+Z2 8datapath.v
+Z3 Fdatapath.v
+L0 1
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1574223818.000000
+Z5 !s107 datapath.v|
+Z6 !s90 -reportprogress|300|-timescale|1ns/1ns|datapath.v|
+!i113 1
+Z7 o-timescale 1ns/1ns
+Z8 tCvgOpt 0
+vmain
+Z9 !s110 1574891412
+!i10b 1
+!s100 dBJUc:UR_g[NhTa:j^6h_1
+I^U72nX5W^=Cf=J9_?V5_b2
+R1
+Z10 dC:/Users/Nachi/Desktop/Uft/CSC258/CSC258_Project/cloudy-with-a-chance-of-meatsquares
+Z11 w1574823906
+Z12 8main.v
+Z13 Fmain.v
+L0 1
+R4
+r1
+!s85 0
+31
+Z14 !s108 1574891412.000000
+Z15 !s107 main.v|
+Z16 !s90 -reportprogress|300|-timescale|1ns/1ns|main.v|
+!i113 1
+R7
+R8
+vrandom
+Z17 !s110 1574228805
+!i10b 1
+!s100 W^HfzI3WZ=WP9?AE8F_>T3
+I7V=2bgO4zAzg@ag]SjN8d3
+R1
+R0
+Z18 w1574228801
+R2
+R3
+L0 23
+R4
+r1
+!s85 0
+31
+Z19 !s108 1574228805.000000
+R5
+R6
+!i113 1
+R7
+R8
+vrandom
+Z20 !s110 1574231401
+!i10b 1
+!s100 0UR0d_?Y=5SAoiP4B=7Ml1
+I1iKfUzd[XKIlb_ZNg19bP1
+R1
+R0
+Z21 w1574231395
+Z22 8sky.v
+Z23 Fsky.v
+L0 1
+R4
+r1
+!s85 0
+31
+Z24 !s108 1574231401.000000
+Z25 !s107 sky.v|
+Z26 !s90 -reportprogress|300|-timescale|1ns/1ns|sky.v|
+!i113 1
+R7
+R8
+vrate_divider
+R17
+!i10b 1
+!s100 P<kKH]bLCz;<?aKlKj`jg0
+I4oS6;9R61_8@MRhkZjz3n3
+R1
+R0
+R18
+R2
+R3
+L0 2
+R4
+r1
+!s85 0
+31
+R19
+R5
+R6
+!i113 1
+R7
+R8
+vsky
+R20
+!i10b 1
+!s100 `UFR=M3ISli:U_Cgj@eWg0
+I?SN3I`MWz6n4VKVHB`DZ`0
+R1
+R0
+R21
+R22
+R23
+L0 22
+R4
+r1
+!s85 0
+31
+R24
+R25
+R26
+!i113 1
+R7
+R8
+vupdate_sky
+R20
+!i10b 1
+!s100 Fz40DS>Lze`DYLz]WA@]n0
+In2o7V<<ld5mF@b9ze0idH2
+R1
+R0
+R21
+R22
+R23
+L0 33
+R4
+r1
+!s85 0
+31
+R24
+R25
+R26
+!i113 1
+R7
+R8
+=======
+vvertical_register
+R17
+!i10b 1
+!s100 a9b<b<0[Vj;^jzS_cYQTF1
+Ia5_f8RK@A^FH8]fXNlTnD1
+R1
+R0
+R18
+R2
+R3
+L0 44
+R4
+r1
+!s85 0
+31
+R19
+R5
+R6
+!i113 1
+R7
+R8
+vvga_select
+R9
+!i10b 1
+!s100 `3ZS9CH[OReC;;bz`4AmU1
+I_m070Q;g::2=N>YFBPSMB2
+R1
+R10
+R11
+R12
+R13
+L0 105
+R4
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R7
+R8
