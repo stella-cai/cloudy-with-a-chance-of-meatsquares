@@ -101,7 +101,7 @@ module update_sky(clock, update, reset, col1, col2, col3, col4, col5, col6, col7
 				ground[15:14] <= col23[55:54];
 				ground[13:12] <= col24[55:54];
 				ground[11:10] <= col25[55:54];
-				ground[9:8 <= col26[55:54];
+				ground[9:8] <= col26[55:54];
 				ground[7:6] <= col27[55:54];
 				ground[5:4] <= col28[55:54];
 				ground[3:2] <= col29[55:54];
