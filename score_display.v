@@ -26,63 +26,63 @@ endmodule
 
 module has_caught_good_square(output reg [1:0] caught, input [59:0] ground, input [8:0] mouse_position, input clk);
 	always @(posedge clk)
-		if (7'd0 <= mouse_position && mouse_position mouse_position < 7'd4)
+		if (7'd0 <= mouse_position && mouse_position < 7'd4)
 			caught <= (ground[59:58] == 2'b10) + (ground[57:56] == 2'b10);
-		else if (7'd4 <= mouse_position && mouse_position mouse_position < 7'd8)
+		else if (7'd4 <= mouse_position && mouse_position < 7'd8)
 			caught <= (ground[59:58] == 2'b10) + (ground[57:56] == 2'b10) + (ground[55:54] == 2'b10);
-		else if (7'd8 <= mouse_position && mouse_position mouse_position < 7'd12)
+		else if (7'd8 <= mouse_position && mouse_position < 7'd12)
 			caught <= (ground[57:56] == 2'b10) + (ground[55:54] == 2'b10) + (ground[53:52] == 2'b10);
-		else if (7'd12 <= mouse_position && mouse_position mouse_position < 7'd16)
+		else if (7'd12 <= mouse_position && mouse_position < 7'd16)
 			caught <= (ground[55:54] == 2'b10) + (ground[53:52] == 2'b10) + (ground[51:50] == 2'b10);
-		else if (7'd16 <= mouse_position && mouse_position mouse_position < 7'd20)
+		else if (7'd16 <= mouse_position && mouse_position < 7'd20)
 			caught <= (ground[53:52] == 2'b10) + (ground[51:50] == 2'b10) + (ground[49:48] == 2'b10);
-		else if (7'd20 <= mouse_position && mouse_position mouse_position < 7'd24)
+		else if (7'd20 <= mouse_position && mouse_position < 7'd24)
 			caught <= (ground[51:50] == 2'b10) + (ground[49:48] == 2'b10) + (ground[47:46] == 2'b10);
-		else if (7'd24 <= mouse_position && mouse_position mouse_position < 7'd28)
+		else if (7'd24 <= mouse_position && mouse_position < 7'd28)
 			caught <= (ground[49:48] == 2'b10) + (ground[47:46] == 2'b10) + (ground[45:44] == 2'b10);
-		else if (7'd28 <= mouse_position && mouse_position mouse_position < 7'd32)
+		else if (7'd28 <= mouse_position && mouse_position < 7'd32)
 			caught <= (ground[47:46] == 2'b10) + (ground[45:44] == 2'b10) + (ground[43:42] == 2'b10);
-		else if (7'd32 <= mouse_position && mouse_position mouse_position < 7'd36)
+		else if (7'd32 <= mouse_position && mouse_position < 7'd36)
 			caught <= (ground[45:44] == 2'b10) + (ground[43:42] == 2'b10) + (ground[41:40] == 2'b10);
-		else if (7'd36 <= mouse_position && mouse_position mouse_position < 7'd40)
+		else if (7'd36 <= mouse_position && mouse_position < 7'd40)
 			caught <= (ground[43:42] == 2'b10) + (ground[41:40] == 2'b10) + (ground[39:38] == 2'b10);
-		else if (7'd40 <= mouse_position && mouse_position mouse_position < 7'd44)
+		else if (7'd40 <= mouse_position && mouse_position < 7'd44)
 			caught <= (ground[41:40] == 2'b10) + (ground[39:38] == 2'b10) + (ground[37:36] == 2'b10);
-		else if (7'd44 <= mouse_position && mouse_position mouse_position < 7'd48)
+		else if (7'd44 <= mouse_position && mouse_position < 7'd48)
 			caught <= (ground[39:38] == 2'b10) + (ground[37:36] == 2'b10) + (ground[35:34] == 2'b10);
-		else if (7'd48 <= mouse_position && mouse_position mouse_position < 7'd52)
+		else if (7'd48 <= mouse_position && mouse_position < 7'd52)
 			caught <= (ground[37:36] == 2'b10) + (ground[35:34] == 2'b10) + (ground[33:32] == 2'b10);
-		else if (7'd52 <= mouse_position && mouse_position mouse_position < 7'd56)
+		else if (7'd52 <= mouse_position && mouse_position < 7'd56)
 			caught <= (ground[35:34] == 2'b10) + (ground[33:32] == 2'b10) + (ground[31:30] == 2'b10);
-		else if (7'd56 <= mouse_position && mouse_position mouse_position < 7'd60)
+		else if (7'd56 <= mouse_position && mouse_position < 7'd60)
 			caught <= (ground[33:32] == 2'b10) + (ground[31:30] == 2'b10) + (ground[29:28] == 2'b10);
-		else if (7'd60 <= mouse_position && mouse_position mouse_position < 7'd64)
+		else if (7'd60 <= mouse_position && mouse_position < 7'd64)
 			caught <= (ground[31:30] == 2'b10) + (ground[29:28] == 2'b10) + (ground[27:26] == 2'b10);
-		else if (7'd64 <= mouse_position && mouse_position mouse_position < 7'd68)
+		else if (7'd64 <= mouse_position && mouse_position < 7'd68)
 			caught <= (ground[29:28] == 2'b10) + (ground[27:26] == 2'b10) + (ground[25:24] == 2'b10);
 		else if (7'd68 <= mouse_position && mouse_position mouse_position < 7'd72)
 			caught <= (ground[27:26] == 2'b10) + (ground[25:24] == 2'b10) + (ground[23:22] == 2'b10);
-		else if (7'd72 <= mouse_position && mouse_position mouse_position < 7'd76)
+		else if (7'd72 <= mouse_position && mouse_position < 7'd76)
 			caught <= (ground[25:24] == 2'b10) + (ground[23:22] == 2'b10) + (ground[21:20] == 2'b10);
-		else if (7'd76 <= mouse_position && mouse_position mouse_position < 7'd80)
+		else if (7'd76 <= mouse_position && mouse_position < 7'd80)
 			caught <= (ground[23:22] == 2'b10) + (ground[21:20] == 2'b10) + (ground[19:18] == 2'b10);
-		else if (7'd80 <= mouse_position && mouse_position mouse_position < 7'd84)
+		else if (7'd80 <= mouse_position && mouse_position < 7'd84)
 			caught <= (ground[21:20] == 2'b10) + (ground[19:18] == 2'b10) + (ground[17:16] == 2'b10);
-		else if (7'd84 <= mouse_position && mouse_position mouse_position < 7'd88)
+		else if (7'd84 <= mouse_position && mouse_position < 7'd88)
 			caught <= (ground[19:18] == 2'b10) + (ground[17:16] == 2'b10) + (ground[15:14] == 2'b10);
 		else if (7'd88 <= mouse_position && mouse_position mouse_position < 7'd92)
 			caught <= (ground[17:16] == 2'b10) + (ground[15:14] == 2'b10) + (ground[13:12] == 2'b10);
-		else if (7'd92 <= mouse_position && mouse_position mouse_position < 7'd96)
+		else if (7'd92 <= mouse_position && mouse_position < 7'd96)
 			caught <= (ground[15:14] == 2'b10) + (ground[13:12] == 2'b10) + (ground[11:10] == 2'b10);
-		else if (7'd96 <= mouse_position && mouse_position mouse_position < 7'd100)
+		else if (7'd96 <= mouse_position && mouse_position < 7'd100)
 			caught <= (ground[13:12] == 2'b10) + (ground[11:10] == 2'b10) + (ground[9:8] == 2'b10);
-		else if (7'd100 <= mouse_position && mouse_position mouse_position < 7'd104)
+		else if (7'd100 <= mouse_position && mouse_position < 7'd104)
 			caught <= (ground[11:10] == 2'b10) + (ground[9:8] == 2'b10) + (ground[7:6] == 2'b10);
-		else if (7'd104 <= mouse_position && mouse_position mouse_position < 7'd108)
+		else if (7'd104 <= mouse_position && mouse_position < 7'd108)
 			caught <= (ground[9:8] == 2'b10) + (ground[7:6] == 2'b10) + (ground[5:4] == 2'b10);
-		else if (7'd108 <= mouse_position && mouse_position mouse_position < 7'd112)
+		else if (7'd108 <= mouse_position && mouse_position < 7'd112)
 			caught <= (ground[7:6] == 2'b10) + (ground[5:4] == 2'b10) + (ground[3:2] == 2'b10);
-		else if (7'd112 <= mouse_position && mouse_position mouse_position < 7'd116)
+		else if (7'd112 <= mouse_position && mouse_position < 7'd116)
 			caught <= (ground[5:4] == 2'b10) + (ground[3:2] == 2'b10) + (ground[1:0] == 2'b10);
 		else
 			caught <= (ground[3:2] == 2'b10) + (ground[1:0] == 2'b10);
@@ -90,63 +90,63 @@ endmodule
 
 module has_caught_bad_square(output reg [1:0] caught, input [59:0] ground, input [8:0] mouse_position, input clk);
 	always @(posedge clk)
-		if (7'd0 <= mouse_position && mouse_position mouse_position < 7'd4)
+		if (7'd0 <= mouse_position && mouse_position < 7'd4)
 			caught <= (ground[59:58] == 2'b11) + (ground[57:56] == 2'b11);
-		else if (7'd4 <= mouse_position && mouse_position mouse_position < 7'd8)
+		else if (7'd4 <= mouse_position && mouse_position < 7'd8)
 			caught <= (ground[59:58] == 2'b11) + (ground[57:56] == 2'b11) + (ground[55:54] == 2'b11);
-		else if (7'd8 <= mouse_position && mouse_position mouse_position < 7'd12)
+		else if (7'd8 <= mouse_position && mouse_position < 7'd12)
 			caught <= (ground[57:56] == 2'b11) + (ground[55:54] == 2'b11) + (ground[53:52] == 2'b11);
-		else if (7'd12 <= mouse_position && mouse_position mouse_position < 7'd16)
+		else if (7'd12 <= mouse_position && mouse_position < 7'd16)
 			caught <= (ground[55:54] == 2'b11) + (ground[53:52] == 2'b11) + (ground[51:50] == 2'b11);
-		else if (7'd16 <= mouse_position && mouse_position mouse_position < 7'd20)
+		else if (7'd16 <= mouse_position && mouse_position < 7'd20)
 			caught <= (ground[53:52] == 2'b11) + (ground[51:50] == 2'b11) + (ground[49:48] == 2'b11);
-		else if (7'd20 <= mouse_position && mouse_position mouse_position < 7'd24)
+		else if (7'd20 <= mouse_position && mouse_position < 7'd24)
 			caught <= (ground[51:50] == 2'b11) + (ground[49:48] == 2'b11) + (ground[47:46] == 2'b11);
-		else if (7'd24 <= mouse_position && mouse_position mouse_position < 7'd28)
+		else if (7'd24 <= mouse_position && mouse_position < 7'd28)
 			caught <= (ground[49:48] == 2'b11) + (ground[47:46] == 2'b11) + (ground[45:44] == 2'b11);
-		else if (7'd28 <= mouse_position && mouse_position mouse_position < 7'd32)
+		else if (7'd28 <= mouse_position && mouse_position < 7'd32)
 			caught <= (ground[47:46] == 2'b11) + (ground[45:44] == 2'b11) + (ground[43:42] == 2'b11);
-		else if (7'd32 <= mouse_position && mouse_position mouse_position < 7'd36)
+		else if (7'd32 <= mouse_position && mouse_position < 7'd36)
 			caught <= (ground[45:44] == 2'b11) + (ground[43:42] == 2'b11) + (ground[41:40] == 2'b11);
-		else if (7'd36 <= mouse_position && mouse_position mouse_position < 7'd40)
+		else if (7'd36 <= mouse_position && mouse_position < 7'd40)
 			caught <= (ground[43:42] == 2'b11) + (ground[41:40] == 2'b11) + (ground[39:38] == 2'b11);
-		else if (7'd40 <= mouse_position && mouse_position mouse_position < 7'd44)
+		else if (7'd40 <= mouse_position && mouse_position < 7'd44)
 			caught <= (ground[41:40] == 2'b11) + (ground[39:38] == 2'b11) + (ground[37:36] == 2'b11);
-		else if (7'd44 <= mouse_position && mouse_position mouse_position < 7'd48)
+		else if (7'd44 <= mouse_position && mouse_position < 7'd48)
 			caught <= (ground[39:38] == 2'b11) + (ground[37:36] == 2'b11) + (ground[35:34] == 2'b11);
-		else if (7'd48 <= mouse_position && mouse_position mouse_position < 7'd52)
+		else if (7'd48 <= mouse_position && mouse_position < 7'd52)
 			caught <= (ground[37:36] == 2'b11) + (ground[35:34] == 2'b11) + (ground[33:32] == 2'b11);
-		else if (7'd52 <= mouse_position && mouse_position mouse_position < 7'd56)
+		else if (7'd52 <= mouse_position && mouse_position < 7'd56)
 			caught <= (ground[35:34] == 2'b11) + (ground[33:32] == 2'b11) + (ground[31:30] == 2'b11);
-		else if (7'd56 <= mouse_position && mouse_position mouse_position < 7'd60)
+		else if (7'd56 <= mouse_position && mouse_position < 7'd60)
 			caught <= (ground[33:32] == 2'b11) + (ground[31:30] == 2'b11) + (ground[29:28] == 2'b11);
-		else if (7'd60 <= mouse_position && mouse_position mouse_position < 7'd64)
+		else if (7'd60 <= mouse_position && mouse_position < 7'd64)
 			caught <= (ground[31:30] == 2'b11) + (ground[29:28] == 2'b11) + (ground[27:26] == 2'b11);
-		else if (7'd64 <= mouse_position && mouse_position mouse_position < 7'd68)
+		else if (7'd64 <= mouse_position && mouse_position < 7'd68)
 			caught <= (ground[29:28] == 2'b11) + (ground[27:26] == 2'b11) + (ground[25:24] == 2'b11);
-		else if (7'd68 <= mouse_position && mouse_position mouse_position < 7'd72)
+		else if (7'd68 <= mouse_position && mouse_position < 7'd72)
 			caught <= (ground[27:26] == 2'b11) + (ground[25:24] == 2'b11) + (ground[23:22] == 2'b11);
-		else if (7'd72 <= mouse_position && mouse_position mouse_position < 7'd76)
+		else if (7'd72 <= mouse_position && mouse_position < 7'd76)
 			caught <= (ground[25:24] == 2'b11) + (ground[23:22] == 2'b11) + (ground[21:20] == 2'b11);
-		else if (7'd76 <= mouse_position && mouse_position mouse_position < 7'd80)
+		else if (7'd76 <= mouse_position && mouse_position < 7'd80)
 			caught <= (ground[23:22] == 2'b11) + (ground[21:20] == 2'b11) + (ground[19:18] == 2'b11);
-		else if (7'd80 <= mouse_position && mouse_position mouse_position < 7'd84)
+		else if (7'd80 <= mouse_position && mouse_position < 7'd84)
 			caught <= (ground[21:20] == 2'b11) + (ground[19:18] == 2'b11) + (ground[17:16] == 2'b11);
-		else if (7'd84 <= mouse_position && mouse_position mouse_position < 7'd88)
+		else if (7'd84 <= mouse_position && mouse_position < 7'd88)
 			caught <= (ground[19:18] == 2'b11) + (ground[17:16] == 2'b11) + (ground[15:14] == 2'b11);
-		else if (7'd88 <= mouse_position && mouse_position mouse_position < 7'd92)
+		else if (7'd88 <= mouse_position && mouse_position < 7'd92)
 			caught <= (ground[17:16] == 2'b11) + (ground[15:14] == 2'b11) + (ground[13:12] == 2'b11);
-		else if (7'd92 <= mouse_position && mouse_position mouse_position < 7'd96)
+		else if (7'd92 <= mouse_position && mouse_position < 7'd96)
 			caught <= (ground[15:14] == 2'b11) + (ground[13:12] == 2'b11) + (ground[11:10] == 2'b11);
-		else if (7'd96 <= mouse_position && mouse_position mouse_position < 7'd100)
+		else if (7'd96 <= mouse_position && mouse_position < 7'd100)
 			caught <= (ground[13:12] == 2'b11) + (ground[11:10] == 2'b11) + (ground[9:8] == 2'b11);
-		else if (7'd100 <= mouse_position && mouse_position mouse_position < 7'd104)
+		else if (7'd100 <= mouse_position && mouse_position < 7'd104)
 			caught <= (ground[11:10] == 2'b11) + (ground[9:8] == 2'b11) + (ground[7:6] == 2'b11);
-		else if (7'd104 <= mouse_position && mouse_position mouse_position < 7'd108)
+		else if (7'd104 <= mouse_position && mouse_position < 7'd108)
 			caught <= (ground[9:8] == 2'b11) + (ground[7:6] == 2'b11) + (ground[5:4] == 2'b11);
-		else if (7'd108 <= mouse_position && mouse_position mouse_position < 7'd112)
+		else if (7'd108 <= mouse_position && mouse_position < 7'd112)
 			caught <= (ground[7:6] == 2'b11) + (ground[5:4] == 2'b11) + (ground[3:2] == 2'b11);
-		else if (7'd112 <= mouse_position && mouse_position mouse_position < 7'd116)
+		else if (7'd112 <= mouse_position && mouse_position < 7'd116)
 			caught <= (ground[5:4] == 2'b11) + (ground[3:2] == 2'b11) + (ground[1:0] == 2'b11);
 		else
 			caught <= (ground[3:2] == 2'b11) + (ground[1:0] == 2'b11);
@@ -523,51 +523,51 @@ module two_digits(input [6:0] score, output reg [3:0] first_digit, output reg [3
 	reg [6:0] mid_way;
 	always @(posedge clk) begin
 		if (score < 7'd10) begin
-			first_digit = 4'd0;
+			first_digit <= 4'd0;
 			second_digit <= score[3:0];
 		end
 		else if (score < 7'd20) begin
-			first_digit = 4'd1;
+			first_digit <= 4'd1;
 			mid_way <= score - 7'd10;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd30) begin
-			first_digit = 4'd2;
+			first_digit <= 4'd2;
 			mid_way <= score - 7'd20;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd40) begin
-			first_digit = 4'd3;
+			first_digit <= 4'd3;
 			mid_way <= score - 7'd30;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd50) begin
-			first_digit = 4'd4;
+			first_digit <= 4'd4;
 			mid_way <= score - 7'd40;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd60) begin
-			first_digit = 4'd5;
+			first_digit <= 4'd5;
 			mid_way <= score - 7'd50;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd70) begin
-			first_digit = 4'd6;
+			first_digit <= 4'd6;
 			mid_way <= score - 7'd60;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd80) begin
-			first_digit = 4'd7;
+			first_digit <= 4'd7;
 			mid_way <= score - 7'd70;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd90) begin
-			first_digit = 4'd8;
+			first_digit <= 4'd8;
 			mid_way <= score - 7'd80;
 			second_digit <= mid_way[3:0];
 		end
 		else begin
-			first_digit = 4'd9;
+			first_digit <= 4'd9;
 			mid_way <= score - 7'd90;
 			second_digit <= mid_way[3:0];
 		end
