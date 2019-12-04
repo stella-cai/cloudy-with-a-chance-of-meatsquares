@@ -4,7 +4,7 @@ module score(input clock, input reset, input update, input draw,
 					output finish_drawing, output reg finish_game);
 	
 	reg [6:0] score_keeper;
-	reg [1:0] lives;
+	reg [3:0] lives;
 	wire [1:0] has_caught_good, has_caught_bad;
 	has_caught__good_square h0(has_caught_good, ground, mouse_position, clock);
 	has_caught_bad_square bad0(has_caught_bad, ground, mouse_position, clock);
@@ -15,14 +15,20 @@ module score(input clock, input reset, input update, input draw,
 			score_keeper <= score_keeper + has_caught_good;
 	always @(posedge clock)
 		if (!reset)
-			lives = 2'd3;
+			lives = 4'd3;
 		else begin
 			lives = lives - has_caught_bad;
 			finish_game = (lives == 0) ? 1 : 0;
 		end
-	wire [59:0] map_to_draw;
-	decimal_decoder dd0(map_to_draw, score_keeper, clock, reset);
-	draw_score drawer(clock, reset, draw, 8'd130, 7'd20, map_to_draw, x, y, color, finish_drawing);
+	wire [59:0] map_score;
+	wire [29:0] lives_map;
+	decimal_decoder dd0(map_score, score_keeper, clock, reset);
+
+	single_decimal_decoder dd1(.map(map_lives), .lives(lives), .clock(clock), .resetn(reset));
+
+	draw_score drawer(.clock(clock), .reset(reset), .draw(draw), .input_x(8'd125), .input_x2(8'd150), .input_y(7'd20), 
+						.map(map_score), .lives_map(lives_map),
+						.x(x), .y(y), .color(color), .finish_drawing(finish_drawing));
 
 endmodule
 
@@ -156,19 +162,16 @@ module has_caught_bad_square(output reg [1:0] caught, input [59:0] ground, input
 	end
 endmodule
 
-module draw_score(input clock, input reset, input draw, input [7:0] input_x, input [6:0] input_y, input [59:0] map,
+module draw_score(input clock, input reset, input draw, input [7:0] input_x, input [7:0] input_x2, input [6:0] input_y, 
+					input [59:0] map, input [29:0] lives_map,
 					output reg [7:0] x, output reg [6:0] y, output reg [2:0] color,
 										output reg finish_drawing);
-	// you're probably gonna need some more inputs (lives, position, points), depending on if you do the updating
-	// in this module or in a seperate module
 
-	// I set up the drawing cycle and signaling for you
-
-	// initial works for this dw (I've used it in catcher and sky)
 	initial
         finish_drawing = 0;
 	
 	reg [5:0] index = 0;
+	reg [4:0] j = 0;
 	reg counter = 0;
 
 	always @(posedge clock) begin
@@ -178,293 +181,336 @@ module draw_score(input clock, input reset, input draw, input [7:0] input_x, inp
                 color <= 3'd0;
                 finish_drawing = 1'b0;
         end
+		
 		else begin
-		if (draw == 1) begin
-			if ( index < 60) begin
-				finish_drawing <= 0;
-				// assign x, y, and color here
-				
-				if (index < 6'd30) begin
-					if (map[index]) begin
-						// this segment must be drawn
-						if (index < 6) begin
-							if (counter == 0) begin
-								x <= input_x + index;
-								y <= input_y;
-								color <= 3'b111;
+			if (draw == 1) begin
+				if ( index < 60) begin
+					finish_drawing <= 0;
+					// assign x, y, and color here
+					
+					if (index < 6'd30) begin
+						if (map[index]) begin
+							// this segment must be drawn
+							if (index < 6) begin
+								if (counter == 0) begin
+									x <= input_x + index;
+									y <= input_y;
+									color <= 3'b111;
+								end
+								else begin
+									x <= input_x + index;
+									y <= input_y + 6'd1;
+									color <= 3'b111;
+								end
 							end
-							else begin
-								x <= input_x + index;
-								y <= input_y + 6'd1;
-								color <= 3'b111;
+							else if (index < 12) begin
+								if (counter == 0) begin
+									x <= input_x + index - 6;
+									y <= input_y + 6'd2;
+									color <= 3'b111;
+								end
+								else begin
+									x <= input_x + index - 6;
+									y <= input_y + 6'd3;
+									color <= 3'b111;
+								end
+							end
+							else if (index < 18) begin
+								if (counter == 0) begin
+									x <= input_x + index - 12;
+									y <= input_y + 6'd4;
+									color <= 3'b111;
+								end
+								else begin
+									x <= input_x + index - 12;
+									y <= input_y + 6'd5;
+									color <= 3'b111;
+								end
+							end
+							else if (index < 24) begin
+								if (counter == 0) begin
+									x <= input_x + index - 18;
+									y <= input_y + 6'd6;
+									color <= 3'b111;
+								end
+								else begin
+									x <= input_x + index - 18;
+									y <= input_y + 6'd7;
+									color <= 3'b111;
+								end
+							end
+							else if (index < 30) begin
+								if (counter == 0) begin
+									x <= input_x + index - 24;
+									y <= input_y + 6'd8;
+									color <= 3'b111;
+								end
+								else begin
+									x <= input_x + index - 24;
+									y <= input_y + 6'd9;
+									color <= 3'b111;
+								end
 							end
 						end
-						else if (index < 12) begin
-							if (counter == 0) begin
-								x <= input_x + index - 6;
-								y <= input_y + 6'd2;
-								color <= 3'b111;
-							end
-							else begin
-								x <= input_x + index - 6;
-								y <= input_y + 6'd3;
-								color <= 3'b111;
-							end
-						end
-						else if (index < 18) begin
-							if (counter == 0) begin
-								x <= input_x + index - 12;
-								y <= input_y + 6'd4;
-								color <= 3'b111;
-							end
-							else begin
-								x <= input_x + index - 12;
-								y <= input_y + 6'd5;
-								color <= 3'b111;
-							end
-						end
-						else if (index < 24) begin
-							if (counter == 0) begin
-								x <= input_x + index - 18;
-								y <= input_y + 6'd6;
-								color <= 3'b111;
-							end
-							else begin
-								x <= input_x + index - 18;
-								y <= input_y + 6'd7;
-								color <= 3'b111;
-							end
-						end
-						else if (index < 30) begin
-							if (counter == 0) begin
-								x <= input_x + index - 24;
-								y <= input_y + 6'd8;
-								color <= 3'b111;
-							end
-							else begin
-								x <= input_x + index - 24;
-								y <= input_y + 6'd9;
-								color <= 3'b111;
-							end
-						end
-					end
 
-					else begin
-						// these squares should be black
-						if (index < 6)begin
-							if (counter == 0) begin
-								x <= input_x + index;
-								y <= input_y;
-								color <= 3'd0;
+						else begin
+							// these squares should be black
+							if (index < 6)begin
+								if (counter == 0) begin
+									x <= input_x + index;
+									y <= input_y;
+									color <= 3'd0;
+								end
+								else begin
+									x <= input_x + index;
+									y <= input_y + 6'd1;
+									color <= 3'd0;
+								end
 							end
-							else begin
-								x <= input_x + index;
-								y <= input_y + 6'd1;
-								color <= 3'd0;
+							else if (index < 12) begin
+								if (counter == 0) begin
+									x <= input_x + index - 6;
+									y <= input_y + 6'd2;
+									color <= 3'd0;
+								end
+								else begin
+									x <= input_x + index - 6;
+									y <= input_y + 6'd3;
+									color <= 3'd0;
+								end
 							end
-						end
-						else if (index < 12) begin
-							if (counter == 0) begin
-								x <= input_x + index - 6;
-								y <= input_y + 6'd2;
-								color <= 3'd0;
+							else if (index < 18) begin
+								if (counter == 0) begin
+									x <= input_x + index - 12;
+									y <= input_y + 6'd4;
+									color <= 3'd0;
+								end
+								else begin
+									x <= input_x + index - 12;
+									y <= input_y + 6'd5;
+									color <= 3'd0;
+								end
 							end
-							else begin
-								x <= input_x + index - 6;
-								y <= input_y + 6'd3;
-								color <= 3'd0;
+							else if (index < 24) begin
+								if (counter == 0) begin
+									x <= input_x + index - 18;
+									y <= input_y + 6'd6;
+									color <= 3'd0;
+								end
+								else begin
+									x <= input_x + index - 18;
+									y <= input_y + 6'd7;
+									color <= 3'd0;
+								end
 							end
-						end
-						else if (index < 18) begin
-							if (counter == 0) begin
-								x <= input_x + index - 12;
-								y <= input_y + 6'd4;
-								color <= 3'd0;
-							end
-							else begin
-								x <= input_x + index - 12;
-								y <= input_y + 6'd5;
-								color <= 3'd0;
-							end
-						end
-						else if (index < 24) begin
-							if (counter == 0) begin
-								x <= input_x + index - 18;
-								y <= input_y + 6'd6;
-								color <= 3'd0;
-							end
-							else begin
-								x <= input_x + index - 18;
-								y <= input_y + 6'd7;
-								color <= 3'd0;
-							end
-						end
-						else if (index < 30) begin
-							if (counter == 0) begin
-								x <= input_x + index - 24;
-								y <= input_y + 6'd8;
-								color <= 3'd0;
-							end
-							else begin
-								x <= input_x + index - 24;
-								y <= input_y + 6'd9;
-								color <= 3'd0;
+							else if (index < 30) begin
+								if (counter == 0) begin
+									x <= input_x + index - 24;
+									y <= input_y + 6'd8;
+									color <= 3'd0;
+								end
+								else begin
+									x <= input_x + index - 24;
+									y <= input_y + 6'd9;
+									color <= 3'd0;
+								end
 							end
 						end
 					end
-				end
-				else begin
-					if (map[index]) begin
-						if (index < 36)begin
-							if (counter == 0) begin
-								x <= input_x + index - 8'd15;
+					else begin
+						if (map[index]) begin
+							if (index < 36)begin
+								if (counter == 0) begin
+									x <= input_x + index - 8'd15;
+									y <= input_y;
+									color <= 3'b111;
+								end
+								else begin
+									x <= input_x + index;
+									y <= input_y + 6'd1;
+									color <= 3'b111;
+								end
+							end
+							else if (index < 42) begin
+								if (counter == 0) begin
+									x <= input_x + index - 6 - 8'd15;
+									y <= input_y + 6'd2;
+									color <= 3'b111;
+								end
+								else begin
+									x <= input_x + index - 6 - 8'd15;
+									y <= input_y + 6'd3;
+									color <= 3'b111;
+								end
+							end
+							else if (index < 48) begin
+								if (counter == 0) begin
+									x <= input_x + index - 12 - 8'd15;
+									y <= input_y + 6'd4;
+									color <= 3'b111;
+								end
+								else begin
+									x <= input_x + index - 12 - 8'd15;
+									y <= input_y + 6'd5;
+									color <= 3'b111;
+								end
+							end
+							else if (index < 54) begin
+								if (counter == 0) begin
+									x <= input_x + index - 18 - 8'd15;
+									y <= input_y + 6'd6;
+									color <= 3'b111;
+								end
+								else begin
+									x <= input_x + index - 18 - 8'd15;
+									y <= input_y + 6'd7;
+									color <= 3'b111;
+								end
+							end
+							else if (index < 60) begin
+								if (counter == 0) begin
+									x <= input_x + index - 24 - 8'd15;
+									y <= input_y + 6'd8;
+									color <= 3'b111;
+								end
+								else begin
+									x <= input_x + index - 24 - 8'd15;
+									y <= input_y + 6'd9;
+									color <= 3'b111;
+								end
+							end
+							else begin
+								x <= input_x;
 								y <= input_y;
-								color <= 3'b111;
-							end
-							else begin
-								x <= input_x + index;
-								y <= input_y + 6'd1;
-								color <= 3'b111;
-							end
-						end
-						else if (index < 42) begin
-							if (counter == 0) begin
-								x <= input_x + index - 6 - 8'd15;
-								y <= input_y + 6'd2;
-								color <= 3'b111;
-							end
-							else begin
-								x <= input_x + index - 6 - 8'd15;
-								y <= input_y + 6'd3;
-								color <= 3'b111;
-							end
-						end
-						else if (index < 48) begin
-							if (counter == 0) begin
-								x <= input_x + index - 12 - 8'd15;
-								y <= input_y + 6'd4;
-								color <= 3'b111;
-							end
-							else begin
-								x <= input_x + index - 12 - 8'd15;
-								y <= input_y + 6'd5;
-								color <= 3'b111;
-							end
-						end
-						else if (index < 54) begin
-							if (counter == 0) begin
-								x <= input_x + index - 18 - 8'd15;
-								y <= input_y + 6'd6;
-								color <= 3'b111;
-							end
-							else begin
-								x <= input_x + index - 18 - 8'd15;
-								y <= input_y + 6'd7;
-								color <= 3'b111;
-							end
-						end
-						else if (index < 60) begin
-							if (counter == 0) begin
-								x <= input_x + index - 24 - 8'd15;
-								y <= input_y + 6'd8;
-								color <= 3'b111;
-							end
-							else begin
-								x <= input_x + index - 24 - 8'd15;
-								y <= input_y + 6'd9;
 								color <= 3'b111;
 							end
 						end
 						else begin
-							x <= input_x;
-							y <= input_y;
-							color <= 3'b111;
-						end
-					end
-					else begin
-						if (index < 36)begin
-							if (counter == 0) begin
-								x <= input_x + index - 8'd15;
+							if (index < 36)begin
+								if (counter == 0) begin
+									x <= input_x + index - 8'd15;
+									y <= input_y;
+									color <= 3'd0;
+								end
+								else begin
+									x <= input_x + index - 8'd15;
+									y <= input_y + 6'd1;
+									color <= 3'd0;
+								end
+							end
+							else if (index < 42) begin
+								if (counter == 0) begin
+									x <= input_x + index - 6 - 8'd15;
+									y <= input_y + 6'd2;
+									color <= 3'd0;
+								end
+								else begin
+									x <= input_x + index - 6 - 8'd15;
+									y <= input_y + 6'd3;
+									color <= 3'd0;
+								end
+							end
+							else if (index < 48) begin
+								if (counter == 0) begin
+									x <= input_x + index - 12 - 8'd15;
+									y <= input_y + 6'd4;
+									color <= 3'd0;
+								end
+								else begin
+									x <= input_x + index - 12 - 8'd15;
+									y <= input_y + 6'd5;
+									color <= 3'd0;
+								end
+							end
+							else if (index < 54) begin
+								if (counter == 0) begin
+									x <= input_x + index - 18 - 8'd15;
+									y <= input_y + 6'd6;
+									color <= 3'd0;
+								end
+								else begin
+									x <= input_x + index - 18 - 8'd15;
+									y <= input_y + 6'd7;
+									color <= 3'd0;
+								end
+							end
+							else if (index < 60) begin
+								if (counter == 0) begin
+									x <= input_x + index - 24 - 8'd15;
+									y <= input_y + 6'd8;
+									color <= 3'd0;
+								end
+								else begin
+									x <= input_x + index - 24 - 8'd15;
+									y <= input_y + 6'd9;
+									color <= 3'd0;
+								end
+							end
+							else begin
+								x <= input_x;
 								y <= input_y;
 								color <= 3'd0;
 							end
-							else begin
-								x <= input_x + index - 8'd15;
-								y <= input_y + 6'd1;
-								color <= 3'd0;
-							end
 						end
-						else if (index < 42) begin
-							if (counter == 0) begin
-								x <= input_x + index - 6 - 8'd15;
-								y <= input_y + 6'd2;
-								color <= 3'd0;
-							end
-							else begin
-								x <= input_x + index - 6 - 8'd15;
-								y <= input_y + 6'd3;
-								color <= 3'd0;
-							end
+					end
+					begin
+						if (counter) begin
+							index = index + 1;
+							counter = 0;
 						end
-						else if (index < 48) begin
-							if (counter == 0) begin
-								x <= input_x + index - 12 - 8'd15;
-								y <= input_y + 6'd4;
-								color <= 3'd0;
-							end
-							else begin
-								x <= input_x + index - 12 - 8'd15;
-								y <= input_y + 6'd5;
-								color <= 3'd0;
-							end
-						end
-						else if (index < 54) begin
-							if (counter == 0) begin
-								x <= input_x + index - 18 - 8'd15;
-								y <= input_y + 6'd6;
-								color <= 3'd0;
-							end
-							else begin
-								x <= input_x + index - 18 - 8'd15;
-								y <= input_y + 6'd7;
-								color <= 3'd0;
-							end
-						end
-						else if (index < 60) begin
-							if (counter == 0) begin
-								x <= input_x + index - 24 - 8'd15;
-								y <= input_y + 6'd8;
-								color <= 3'd0;
-							end
-							else begin
-								x <= input_x + index - 24 - 8'd15;
-								y <= input_y + 6'd9;
-								color <= 3'd0;
-							end
-						end
-						else begin
-							x <= input_x;
-							y <= input_y;
-							color <= 3'd0;
-						end
+						else
+							counter = 1;
 					end
 				end
-				begin
-					if (counter) begin
-						index = index + 1;
-						counter = 0;
-					end
+
+				else if(index == 6'd60 && j < 5'd30) begin
+				// time to draw the lives
+					if (lives_map[j] == 0)
+						color <= 3'b000;
 					else
+						color <= 3'b111;
+
+				    x <= input_x2 + (j % 6);
+					if (counter) begin
+						y <= input_y + 2 * (j / 6);
+						counter = 0;
+						j = j + 1;
+					end
+					else begin
+						y <= input_y + 2 * (j / 6) + 1;
 						counter = 1;
+					end
+				end
+
+				else begin
+					finish_drawing <= 1;
+					index = 6'd0;
+					j = 5'd0;
 				end
 			end
+		end
+	end
+endmodule
 
-			else begin
-				finish_drawing <= 1;
-				index = 6'd0;
-			end
-		end
-		end
+module single_decimal_decoder(output reg [29:0] map, input [3:0] lives, input clk, input resetn);
+
+	always @(posedge clk) begin
+		case (lives)
+			4'd0: map <= 30'b111111100001100001100001111111;
+			4'd1: map <= 30'b001000001000001000001000001000;
+			4'd2: map <= 30'b111111000001111111100000111111;
+			4'd3: map <= 30'b111111100000111111100000111111;
+			4'd4: map <= 30'b100000100000111111100001100001;
+			4'd5: map <= 30'b111111100000111111000001111111;
+			4'd6: map <= 30'b111111100001111111000001111111;
+			4'd7: map <= 30'b100000100000100000100000111111;
+			4'd8: map <= 30'b111111100001111111100001111111;
+			4'd9: map <= 30'b111111100000111111100001111111;
+			default: map <= 30'b111111100001100001100001111111;
+		endcase
+
+		if (!resetn)
+			map <= 30'd0;
 	end
 endmodule
 
