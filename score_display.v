@@ -6,7 +6,7 @@ module score(input clock, input reset, input update, input draw,
 	reg [6:0] score_keeper;
 	reg [3:0] lives;
 	wire [1:0] has_caught_good, has_caught_bad;
-	has_caught__good_square h0(has_caught_good, ground, mouse_position, clock);
+	has_caught_good_square h0(has_caught_good, ground, mouse_position, clock);
 	has_caught_bad_square bad0(has_caught_bad, ground, mouse_position, clock);
 	always @(posedge clock)
 		if (!reset)
