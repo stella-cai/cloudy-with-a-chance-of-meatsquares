@@ -523,51 +523,51 @@ module two_digits(input [6:0] score, output reg [3:0] first_digit, output reg [3
 	reg [6:0] mid_way;
 	always @(posedge clk) begin
 		if (score < 7'd10) begin
-			first_digit = 4'd0;
+			first_digit <= 4'd0;
 			second_digit <= score[3:0];
 		end
 		else if (score < 7'd20) begin
-			first_digit = 4'd1;
+			first_digit <= 4'd1;
 			mid_way <= score - 7'd10;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd30) begin
-			first_digit = 4'd2;
+			first_digit <= 4'd2;
 			mid_way <= score - 7'd20;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd40) begin
-			first_digit = 4'd3;
+			first_digit <= 4'd3;
 			mid_way <= score - 7'd30;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd50) begin
-			first_digit = 4'd4;
+			first_digit <= 4'd4;
 			mid_way <= score - 7'd40;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd60) begin
-			first_digit = 4'd5;
+			first_digit <= 4'd5;
 			mid_way <= score - 7'd50;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd70) begin
-			first_digit = 4'd6;
+			first_digit <= 4'd6;
 			mid_way <= score - 7'd60;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd80) begin
-			first_digit = 4'd7;
+			first_digit <= 4'd7;
 			mid_way <= score - 7'd70;
 			second_digit <= mid_way[3:0];
 		end
 		else if (score < 7'd90) begin
-			first_digit = 4'd8;
+			first_digit <= 4'd8;
 			mid_way <= score - 7'd80;
 			second_digit <= mid_way[3:0];
 		end
 		else begin
-			first_digit = 4'd9;
+			first_digit <= 4'd9;
 			mid_way <= score - 7'd90;
 			second_digit <= mid_way[3:0];
 		end
