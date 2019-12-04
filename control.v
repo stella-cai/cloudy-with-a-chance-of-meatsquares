@@ -2,25 +2,26 @@ module control(clock, reset, start,
                 delay_enable, 
                 finish_game, 
                 update, plot, 
-                draw_squares, draw_catcher, draw_score,
+                draw_squares, draw_catcher, draw_score, draw_end,
                 reset_count, 
-                finish_drawing_squares, finish_drawing_catcher, finish_drawing_score);
+                finish_drawing_squares, finish_drawing_catcher, finish_drawing_score, finish_drawing_end);
 
     input clock, reset, start, delay_enable, finish_game, 
     finish_drawing_squares, finish_drawing_catcher, finish_drawing_score;
     output reg update, plot, draw_squares, draw_catcher, draw_score, reset_count;
 
-    reg [2:0] current_state, next_state;
+    reg [3:0] current_state, next_state;
 
-    localparam  s_start = 3'd0,
-                s_start_wait = 3'd1,
-                s_update = 3'd2,
-                s_draw_squares = 3'd3,
-                s_draw_catcher = 3'd4,
-                s_draw_score = 3'd5;
-                s_reset_count = 3'd6,
-                s_count = 3'd7,
-                s_end = 3'd8;
+    localparam  s_start = 4'd0,
+                s_start_wait = 4'd1,
+                s_update = 4'd2,
+                s_draw_squares = 4'd3,
+                s_draw_catcher = 4'd4,
+                s_draw_score = 4'd5;
+                s_reset_count = 4'd6,
+                s_count = 4'd7,
+                s_draw_end = 4'd8,
+                s_end = 4'd9;
 
 
     //state table
@@ -29,12 +30,13 @@ module control(clock, reset, start,
         case (current_state)
             s_start: next_state = start ? s_start_wait : s_start;
             s_start_wait: next_state = start? s_start_wait : s_update;
-            s_update : next_state = finish_game? s_end : s_draw_squares;
+            s_update : next_state = finish_game? s_draw_end : s_draw_squares;
             s_draw_squares : next_state = finish_drawing_squares? s_draw_catcher : s_draw_squares;
             s_draw_catcher : next_state = finish_drawing_catcher? s_draw_score : s_draw_catcher;
             s_draw_score : next_state = finish_drawing_score ? s_reset_count : s_draw_score;
             s_reset_count : next_state = s_count;
             s_count : next_state = delay_enable ? s_update : s_count;
+            s_draw_end : next_state = finish_drawing_end ? s_end : s_draw_end;
             s_end : next_state = s_end;
             default: next_state = s_start;
         endcase
@@ -48,6 +50,7 @@ module control(clock, reset, start,
         draw_squares = 0;
         draw_catcher = 0;
         draw_score = 0;
+        draw_end = 0;
         reset_count = 0;
 
         case (current_state)
@@ -72,6 +75,10 @@ module control(clock, reset, start,
                 reset_count = 1;
             end
             s_count : begin          
+            end
+            s_draw_end : begin
+                plot = 1;
+                draw_end = 1;
             end
             s_end : begin
             end

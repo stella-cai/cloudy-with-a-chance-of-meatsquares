@@ -15,13 +15,14 @@ module score(input clock, input reset, input update, input draw,
 			score_keeper <= score_keeper + has_caught_good;
 	always @(posedge clock)
 		if (!reset)
-			lives <= 2'd3;
+			lives = 2'd3;
 		else
-			lives <= lives - has_caught_bad;
+			lives = lives - has_caught_bad;
+			finish_game = (lives == 0) ? 1 : 0;
 	wire [59:0] map_to_draw;
 	decimal_decoder dd0(map_to_draw, score_keeper, clock, reset);
-	draw_score drawer(clock, reset, draw, 8'd121, 7'd60, map_to_draw, x, y, color, finish_drawing);
-	assign finish_game = (lives == 0) ? 1 : 0;
+	draw_score drawer(clock, reset, draw, 8'd130, 7'd20, map_to_draw, x, y, color, finish_drawing);
+
 endmodule
 
 module has_caught_good_square(output reg [1:0] caught, input [59:0] ground, input [8:0] mouse_position, input clk);
@@ -84,7 +85,7 @@ module has_caught_good_square(output reg [1:0] caught, input [59:0] ground, inpu
 			caught <= (ground[7:6] == 2'b10) + (ground[5:4] == 2'b10) + (ground[3:2] == 2'b10);
 		else if (7'd112 <= mouse_position && mouse_position < 7'd116)
 			caught <= (ground[5:4] == 2'b10) + (ground[3:2] == 2'b10) + (ground[1:0] == 2'b10);
-		else
+		else if (7'd116 <= mouse_position && mouse_position < 7'd120)
 			caught <= (ground[3:2] == 2'b10) + (ground[1:0] == 2'b10);
 endmodule
 
@@ -148,7 +149,7 @@ module has_caught_bad_square(output reg [1:0] caught, input [59:0] ground, input
 			caught <= (ground[7:6] == 2'b11) + (ground[5:4] == 2'b11) + (ground[3:2] == 2'b11);
 		else if (7'd112 <= mouse_position && mouse_position < 7'd116)
 			caught <= (ground[5:4] == 2'b11) + (ground[3:2] == 2'b11) + (ground[1:0] == 2'b11);
-		else
+		else if (7'd116 <= mouse_position && mouse_position < 7'd120)
 			caught <= (ground[3:2] == 2'b11) + (ground[1:0] == 2'b11);
 endmodule
 
@@ -179,76 +180,74 @@ module draw_score(input clock, input reset, input draw, input [7:0] input_x, inp
 			if ( index < 60) begin
 				finish_drawing <= 0;
 				// assign x, y, and color here
-				begin
+				
 				if (index < 6'd30) begin
 					if (map[index]) begin
-						if (index < 6)begin
+						// this segment must be drawn
+						if (index < 6) begin
 							if (counter == 0) begin
 								x <= input_x + index;
 								y <= input_y;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 							else begin
 								x <= input_x + index;
 								y <= input_y + 6'd1;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 						end
 						else if (index < 12) begin
 							if (counter == 0) begin
 								x <= input_x + index - 6;
 								y <= input_y + 6'd2;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 							else begin
 								x <= input_x + index - 6;
 								y <= input_y + 6'd3;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 						end
 						else if (index < 18) begin
 							if (counter == 0) begin
 								x <= input_x + index - 12;
 								y <= input_y + 6'd4;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 							else begin
 								x <= input_x + index - 12;
 								y <= input_y + 6'd5;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 						end
 						else if (index < 24) begin
 							if (counter == 0) begin
 								x <= input_x + index - 18;
 								y <= input_y + 6'd6;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 							else begin
 								x <= input_x + index - 18;
 								y <= input_y + 6'd7;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 						end
 						else if (index < 30) begin
 							if (counter == 0) begin
 								x <= input_x + index - 24;
 								y <= input_y + 6'd8;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 							else begin
 								x <= input_x + index - 24;
 								y <= input_y + 6'd9;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
-						end
-						else begin
-							x <= input_x;
-							y <= input_y
-							color <= 3'd3;
 						end
 					end
+
 					else begin
+						// these squares should be black
 						if (index < 6)begin
 							if (counter == 0) begin
 								x <= input_x + index;
@@ -308,11 +307,6 @@ module draw_score(input clock, input reset, input draw, input [7:0] input_x, inp
 								y <= input_y + 6'd9;
 								color <= 3'd0;
 							end
-						end
-						else begin
-							x <= input_x;
-							y <= input_y
-							color <= 3'd0;
 						end
 					end
 				end
@@ -322,66 +316,66 @@ module draw_score(input clock, input reset, input draw, input [7:0] input_x, inp
 							if (counter == 0) begin
 								x <= input_x + index - 8'd15;
 								y <= input_y;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 							else begin
 								x <= input_x + index;
 								y <= input_y + 6'd1;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 						end
 						else if (index < 42) begin
 							if (counter == 0) begin
 								x <= input_x + index - 6 - 8'd15;
 								y <= input_y + 6'd2;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 							else begin
 								x <= input_x + index - 6 - 8'd15;
 								y <= input_y + 6'd3;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 						end
 						else if (index < 48) begin
 							if (counter == 0) begin
 								x <= input_x + index - 12 - 8'd15;
 								y <= input_y + 6'd4;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 							else begin
 								x <= input_x + index - 12 - 8'd15;
 								y <= input_y + 6'd5;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 						end
 						else if (index < 54) begin
 							if (counter == 0) begin
 								x <= input_x + index - 18 - 8'd15;
 								y <= input_y + 6'd6;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 							else begin
 								x <= input_x + index - 18 - 8'd15;
 								y <= input_y + 6'd7;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 						end
 						else if (index < 60) begin
 							if (counter == 0) begin
 								x <= input_x + index - 24 - 8'd15;
 								y <= input_y + 6'd8;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 							else begin
 								x <= input_x + index - 24 - 8'd15;
 								y <= input_y + 6'd9;
-								color <= 3'd3;
+								color <= 3'b111;
 							end
 						end
 						else begin
 							x <= input_x;
 							y <= input_y
-							color <= 3'd3;
+							color <= 3'b111;
 						end
 					end
 					else begin
@@ -452,20 +446,19 @@ module draw_score(input clock, input reset, input draw, input [7:0] input_x, inp
 						end
 					end
 				end
-				end
 				begin
 					if (counter) begin
-						index <= index + 1;
-						counter <= counter + 1
+						index = index + 1;
+						counter = 0;
 					end
 					else
-						counter <= counter + 1;
+						counter = 1;
 				end
 			end
 
 			else begin
 				finish_drawing <= 1;
-				index <= 6'd0;
+				index = 6'd0;
 			end
 		end
 		end
